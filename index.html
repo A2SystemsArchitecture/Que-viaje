@@ -401,7 +401,7 @@
     display: inline-flex;
     flex-direction: column;
     vertical-align: middle;
-    margin: 2px 4px;
+    margin: 4px 2px 2px;
     gap: 4px;
   }
   .word-bank-label {
@@ -409,30 +409,39 @@
     font-size: 0.65rem;
     letter-spacing: 2px;
     color: var(--deep-red);
-    text-align: center;
   }
   .word-bank-options {
     display: inline-flex;
     flex-wrap: wrap;
     gap: 5px;
     align-items: center;
+    background: #fff3d8;
+    border: 1px dashed #c9922a88;
+    border-radius: 4px;
+    padding: 4px 8px;
   }
-  .wb-option {
-    padding: 2px 11px;
-    border: 1.5px solid #c9922a88;
-    border-radius: 20px;
-    background: #fff9f0;
+  .wb-word {
     font-family: 'Crimson Pro', serif;
-    font-size: 0.95rem;
-    color: var(--ink);
-    cursor: pointer;
-    transition: all 0.15s;
+    font-size: 0.92rem;
+    color: var(--warm-gray);
+    font-style: italic;
     white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
   }
-  .wb-option:hover { background: #f5e6c8; border-color: var(--gold); }
-  .wb-option.selected { background: var(--deep-red); color: var(--gold); border-color: var(--deep-red); }
-  .wb-option.reveal-correct { background: var(--correct); color: white; border-color: var(--correct); }
-  .wb-option.wrong-answer { background: var(--wrong); color: white; border-color: var(--wrong); text-decoration: line-through; }
+  .wb-word::after {
+    content: ' ·';
+    color: #c9922a66;
+  }
+  .wb-word:last-child::after {
+    content: '';
+  }
+  .wb-input-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
 
   /* FILL-IN INPUTS */
   .blank-input {
@@ -1658,11 +1667,8 @@ function renderBlank(item, actIdx) {
   const uid = `a${actIdx}i${item.id}`;
   if (item.type === 'text') {
     const wordBank = generateWordBank(item.answer);
-    let opts = '';
-    wordBank.forEach(word => {
-      opts += `<button class="wb-option" onclick="selectWB('${uid}', '${word.replace(/'/g,"\\'")}', this)" data-value="${word.replace(/"/g,'&quot;')}">${word}</button>`;
-    });
-    return `<span class="item-num">${item.id}</span><span class="word-bank-wrap"><span class="word-bank-label">📖 Word Bank</span><span class="word-bank-options" id="wb-${uid}">${opts}</span></span>`;
+    const wordSpans = wordBank.map(w => `<span class="wb-word">${w}</span>`).join('');
+    return `<span class="item-num">${item.id}</span><span class="word-bank-wrap"><span class="word-bank-label">📖 Word Bank</span><span class="word-bank-options">${wordSpans}</span><span class="wb-input-row"><input class="blank-input" id="item-${uid}" type="text" placeholder="___" autocomplete="off" spellcheck="false" /></span></span>`;
   } else {
     let opts = '';
     item.options.forEach(opt => {
@@ -1670,15 +1676,6 @@ function renderBlank(item, actIdx) {
     });
     return `<span class="item-num">${item.id}</span><span class="mc-group" id="mc-${uid}">${opts}</span>`;
   }
-}
-
-function selectWB(uid, value, btn) {
-  if (submitted) return;
-  const group = document.getElementById(`wb-${uid}`);
-  group.querySelectorAll('.wb-option').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  btn.dataset.selected = 'true';
-  group.dataset.selected = value;
 }
 
 function selectMC(uid, value, btn) {
@@ -1702,8 +1699,8 @@ function handleSubmit() {
     act.items.forEach(item => {
       const uid = `a${actIdx}i${item.id}`;
       if (item.type === 'text') {
-        const group = document.getElementById(`wb-${uid}`);
-        if (!group?.dataset.selected) allAnswered = false;
+        const val = document.getElementById(`item-${uid}`)?.value.trim();
+        if (!val) allAnswered = false;
       } else {
         const group = document.getElementById(`mc-${uid}`);
         if (!group?.dataset.selected) allAnswered = false;
@@ -1734,8 +1731,7 @@ function handleSubmit() {
       let studentAnswer = '';
 
       if (item.type === 'text') {
-        const group = document.getElementById(`wb-${uid}`);
-        studentAnswer = group?.dataset.selected || '(no answer)';
+        studentAnswer = document.getElementById(`item-${uid}`)?.value.trim() || '(no answer)';
       } else {
         const group = document.getElementById(`mc-${uid}`);
         studentAnswer = group?.dataset.selected || '(no answer)';
@@ -1749,17 +1745,11 @@ function handleSubmit() {
 
       // Visual feedback
       if (item.type === 'text') {
-        const group = document.getElementById(`wb-${uid}`);
-        if (group) {
-          group.querySelectorAll('.wb-option').forEach(btn => {
-            btn.disabled = true;
-            const val = btn.dataset.value || btn.textContent;
-            if (normalize(val) === normalize(item.answer)) {
-              btn.classList.add('reveal-correct');
-            } else if (btn.dataset.selected === 'true' && !isCorrect) {
-              btn.classList.add('wrong-answer');
-            }
-          });
+        const el = document.getElementById(`item-${uid}`);
+        if (el) {
+          el.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+          el.disabled = true;
+          if (!isCorrect) el.value = studentAnswer + ' ✗';
         }
       } else {
         const group = document.getElementById(`mc-${uid}`);
