@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
 <title>¡Qué Viaje! — Una Comedia Dramática en 20 Actos</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
@@ -168,10 +169,11 @@
     border: 2px solid var(--gold);
     border-radius: 4px;
     padding: 32px 36px;
-    max-width: 480px;
+    max-width: 680px;
     width: 100%;
     box-shadow: 0 12px 50px #00000077, inset 0 1px 0 #ffffff55;
     animation: fadeUp 0.8s 0.4s ease both;
+    position: relative;
   }
   .signin-title {
     font-family: 'Playfair Display', serif;
@@ -187,6 +189,14 @@
     font-size: 0.95rem;
     margin-bottom: 24px;
     font-style: italic;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 540px) {
+    .form-row { grid-template-columns: 1fr; }
   }
   .form-group {
     margin-bottom: 18px;
@@ -618,7 +628,49 @@
     to { opacity: 1; transform: translateX(-50%) translateY(0); }
   }
 
-  /* FOOTER */
+  .act-progress {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .progress-pip {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #c9922a44;
+    border: 1.5px solid var(--gold);
+    transition: background 0.3s;
+  }
+  .progress-pip.done { background: var(--correct); border-color: var(--correct); }
+  .progress-pip.active { background: var(--gold); border-color: var(--gold); }
+
+  /* ACT DIVIDER */
+  .act-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 20px;
+  }
+  .act-divider::before, .act-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .act-divider::after {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+  .act-divider-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* PAGE FOOTER */
   .page-footer {
     margin-top: 40px;
     text-align: center;
@@ -686,15 +738,17 @@
     <!-- SIGN IN FORM -->
     <div class="signin-card">
       <div class="signin-title">🎭 Student Sign-In</div>
-      <div class="signin-sub">Enter your information to receive your assigned Act</div>
+      <div class="signin-sub">Enter your information to receive your assigned Acts</div>
 
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" id="first-name" placeholder="e.g. María" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label>Last Name</label>
-        <input type="text" id="last-name" placeholder="e.g. García" autocomplete="off" />
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="first-name" placeholder="e.g. María" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="last-name" placeholder="e.g. García" autocomplete="off" />
+        </div>
       </div>
       <div class="form-group">
         <label>Class Period</label>
@@ -716,18 +770,19 @@
     <div class="act-header">
       <div class="act-student-info" id="act-student-info"></div>
       <div class="act-number" id="act-number-label"></div>
+      <div class="act-progress" id="act-progress"></div>
     </div>
 
     <div class="act-instruction">
-      <strong>Instructions / Instrucciones:</strong> You are a student assistant to a famous Spanish playwright. Complete your assigned Act of <em>¡Qué Viaje!</em> by filling in the missing words. Some items are <strong>multiple choice</strong> — click the correct option. Others require you to <strong>type the answer</strong> in the blank. Pay close attention to vocabulary, verb tense (preterite &amp; imperfect), and context clues.<br>
-      <span style="color:var(--deep-red); font-weight:600;">⚠️ You have ONE attempt. Once you submit, your answers are final.</span>
+      <strong>Instructions / Instrucciones:</strong> You are a student assistant to a famous Spanish playwright. Complete all 4 of your assigned Acts by filling in the missing words. Some items are <strong>multiple choice</strong> — click the correct option. Others require you to <strong>type the answer</strong> in the blank. Pay close attention to vocabulary, verb tense (preterite &amp; imperfect), and context clues.<br>
+      <span style="color:var(--deep-red); font-weight:600;">⚠️ You have ONE attempt. Once you submit all acts, your answers are final.</span>
     </div>
 
     <div id="act-content"></div>
 
     <div class="submit-area">
       <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">
-        🎭 Submit My Act — ¡Entregar!
+        🎭 Submit All Acts — ¡Entregar!
       </button>
       <div class="attempt-warning">This is your one and only attempt. There is no going back.</div>
     </div>
@@ -813,8 +868,6 @@ const playwrights = [
 
 // ============================================================
 // ALL 20 ACTS DATA
-// Each act has: title, setting, dialogue lines, and items (fill-ins)
-// Items: { id, type: 'mc'|'text', blank position, options (if mc), answer, explanation }
 // ============================================================
 
 const allActs = [
@@ -1349,7 +1402,7 @@ const allActs = [
 // STATE
 // ============================================================
 let currentStudent = null;
-let currentAct = null;
+let currentActs = [];   // Array of 4 act objects
 let tabViolations = 0;
 let submitted = false;
 
@@ -1381,10 +1434,13 @@ function handleSignIn() {
   }
   errEl.classList.add('hidden');
 
-  // Assign random act
-  const actNum = Math.floor(Math.random() * 20) + 1;
-  currentAct = allActs.find(a => a.actNum === actNum);
-  currentStudent = { first, last, period, actNum };
+  // Assign 4 consecutive acts starting from a random act (1–20, wrapping)
+  const startIdx = Math.floor(Math.random() * 20); // 0-based index into allActs
+  currentActs = [];
+  for (let i = 0; i < 4; i++) {
+    currentActs.push(allActs[(startIdx + i) % 20]);
+  }
+  currentStudent = { first, last, period, startActNum: currentActs[0].actNum };
 
   document.getElementById('signin-screen').style.display = 'none';
   showActivity();
@@ -1399,63 +1455,75 @@ function showActivity() {
 
   document.getElementById('act-student-info').textContent =
     `${currentStudent.first} ${currentStudent.last} · ${currentStudent.period}`;
-  document.getElementById('act-number-label').textContent =
-    `${currentAct.title}`;
 
-  renderActContent();
+  const actNums = currentActs.map(a => `Act ${a.actNum}`).join('  ·  ');
+  document.getElementById('act-number-label').textContent = actNums;
+
+  // Progress pips
+  const pipContainer = document.getElementById('act-progress');
+  pipContainer.innerHTML = currentActs.map((a, i) =>
+    `<div class="progress-pip active" id="pip-${i}" title="Act ${a.actNum}"></div>`
+  ).join('');
+
+  renderAllActs();
 }
 
-function renderActContent() {
+function renderAllActs() {
   const container = document.getElementById('act-content');
-  const act = currentAct;
+  let fullHtml = '';
 
-  // Build item map
-  const itemMap = {};
-  act.items.forEach(item => itemMap[item.id] = item);
-
-  let html = `<div class="scene-card">
-    <div class="scene-label">¡Qué Viaje! — ${act.title}</div>
-    <div class="scene-setting"><em>${act.setting}</em></div>`;
-
-  act.dialogue.forEach(line => {
-    if (line.type === 'direction') {
-      html += `<div class="stage-direction">(${line.text})</div>`;
-    } else if (line.type === 'line') {
-      html += `<div class="dialogue-line"><span class="speaker">${line.speaker}:</span><span class="dialogue-text">`;
-      line.text.forEach(segment => {
-        if (typeof segment === 'string') {
-          html += segment;
-        } else if (segment.item) {
-          const item = itemMap[segment.item];
-          html += renderBlank(item);
-        }
-      });
-      html += `</span></div>`;
-    } else if (line.type === 'direction-inline') {
-      html += `<div class="stage-direction">${line.text}</div>`;
+  currentActs.forEach((act, actIdx) => {
+    // Act divider (not before first)
+    if (actIdx > 0) {
+      fullHtml += `<div class="act-divider"><div class="act-divider-label">✦ ${act.title} ✦</div></div>`;
     }
+
+    const itemMap = {};
+    act.items.forEach(item => itemMap[item.id] = item);
+
+    fullHtml += `<div class="scene-card" data-act-idx="${actIdx}">
+      <div class="scene-label">¡Qué Viaje! — ${act.title}</div>
+      <div class="scene-setting"><em>${act.setting}</em></div>`;
+
+    act.dialogue.forEach(line => {
+      if (line.type === 'direction') {
+        fullHtml += `<div class="stage-direction">(${line.text})</div>`;
+      } else if (line.type === 'line') {
+        fullHtml += `<div class="dialogue-line"><span class="speaker">${line.speaker}:</span><span class="dialogue-text">`;
+        line.text.forEach(segment => {
+          if (typeof segment === 'string') {
+            fullHtml += segment;
+          } else if (segment.item) {
+            const item = itemMap[segment.item];
+            fullHtml += renderBlank(item, actIdx);
+          }
+        });
+        fullHtml += `</span></div>`;
+      }
+    });
+
+    fullHtml += `</div>`;
   });
 
-  html += `</div>`;
-  container.innerHTML = html;
+  container.innerHTML = fullHtml;
 }
 
-function renderBlank(item) {
+function renderBlank(item, actIdx) {
+  const uid = `a${actIdx}i${item.id}`;
   if (item.type === 'text') {
-    return `<span class="item-num">${item.id}</span><input class="blank-input" id="item-${item.id}" type="text" placeholder="___" autocomplete="off" spellcheck="false" />`;
+    return `<span class="item-num">${item.id}</span><input class="blank-input" id="item-${uid}" type="text" placeholder="___" autocomplete="off" spellcheck="false" />`;
   } else {
-    // Multiple choice
     let opts = '';
     item.options.forEach(opt => {
-      opts += `<button class="mc-option" onclick="selectMC(${item.id}, '${opt.replace(/'/g,"\\'")}', this)" data-value="${opt.replace(/"/g,'&quot;')}">${opt}</button>`;
+      opts += `<button class="mc-option" onclick="selectMC('${uid}', '${opt.replace(/'/g,"\\'")}', this)" data-value="${opt.replace(/"/g,'&quot;')}">${opt}</button>`;
     });
-    return `<span class="item-num">${item.id}</span><span class="mc-group" id="mc-${item.id}">${opts}</span>`;
+    return `<span class="item-num">${item.id}</span><span class="mc-group" id="mc-${uid}">${opts}</span>`;
   }
 }
 
-function selectMC(itemId, value, btn) {
+function selectMC(uid, value, btn) {
   if (submitted) return;
-  const group = document.getElementById(`mc-${itemId}`);
+  const group = document.getElementById(`mc-${uid}`);
   group.querySelectorAll('.mc-option').forEach(b => b.classList.remove('selected'));
   btn.classList.add('selected');
   btn.dataset.selected = 'true';
@@ -1468,86 +1536,95 @@ function selectMC(itemId, value, btn) {
 function handleSubmit() {
   if (submitted) return;
 
-  // Collect answers
-  const act = currentAct;
   let allAnswered = true;
 
-  act.items.forEach(item => {
-    if (item.type === 'text') {
-      const val = document.getElementById(`item-${item.id}`)?.value.trim();
-      if (!val) allAnswered = false;
-    } else {
-      const group = document.getElementById(`mc-${item.id}`);
-      if (!group?.dataset.selected) allAnswered = false;
-    }
+  currentActs.forEach((act, actIdx) => {
+    act.items.forEach(item => {
+      const uid = `a${actIdx}i${item.id}`;
+      if (item.type === 'text') {
+        const val = document.getElementById(`item-${uid}`)?.value.trim();
+        if (!val) allAnswered = false;
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        if (!group?.dataset.selected) allAnswered = false;
+      }
+    });
   });
 
   if (!allAnswered) {
     if (!confirm('You have unanswered items. Are you sure you want to submit? You cannot go back.')) return;
   } else {
-    if (!confirm('Are you sure you want to submit your Act? This is your ONE and ONLY attempt.')) return;
+    if (!confirm('Are you sure you want to submit all 4 Acts? This is your ONE and ONLY attempt.')) return;
   }
 
   submitted = true;
   document.getElementById('submit-btn').disabled = true;
 
-  // Score
   let correct = 0;
-  const results = [];
+  let total = 0;
+  const allResults = [];
 
-  act.items.forEach(item => {
-    let studentAnswer = '';
-    if (item.type === 'text') {
-      studentAnswer = document.getElementById(`item-${item.id}`)?.value.trim() || '(no answer)';
-    } else {
-      const group = document.getElementById(`mc-${item.id}`);
-      studentAnswer = group?.dataset.selected || '(no answer)';
-    }
+  const normalize = s => s.toLowerCase().replace(/[áàä]/g,'a').replace(/[éèë]/g,'e').replace(/[íìï]/g,'i').replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n').trim();
 
-    // Normalize comparison
-    const normalize = s => s.toLowerCase().replace(/[áàä]/g,'a').replace(/[éèë]/g,'e').replace(/[íìï]/g,'i').replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n').trim();
-    const isCorrect = normalize(studentAnswer) === normalize(item.answer);
-    if (isCorrect) correct++;
+  currentActs.forEach((act, actIdx) => {
+    const actResults = { actTitle: act.title, items: [] };
 
-    results.push({ item, studentAnswer, isCorrect });
-
-    // Visual feedback on blanks
-    if (item.type === 'text') {
-      const el = document.getElementById(`item-${item.id}`);
-      if (el) {
-        el.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
-        el.disabled = true;
-        if (!isCorrect) el.value = studentAnswer + ' ✗';
+    act.items.forEach(item => {
+      const uid = `a${actIdx}i${item.id}`;
+      let studentAnswer = '';
+      if (item.type === 'text') {
+        studentAnswer = document.getElementById(`item-${uid}`)?.value.trim() || '(no answer)';
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        studentAnswer = group?.dataset.selected || '(no answer)';
       }
-    } else {
-      const group = document.getElementById(`mc-${item.id}`);
-      if (group) {
-        group.querySelectorAll('.mc-option').forEach(btn => {
-          btn.disabled = true;
-          const val = btn.dataset.value || btn.textContent;
-          if (normalize(val) === normalize(item.answer)) {
-            btn.classList.add('reveal-correct');
-          } else if (btn.dataset.selected === 'true' && !isCorrect) {
-            btn.classList.add('wrong-answer');
-          }
-        });
+
+      const isCorrect = normalize(studentAnswer) === normalize(item.answer);
+      if (isCorrect) correct++;
+      total++;
+
+      actResults.items.push({ item, studentAnswer, isCorrect });
+
+      // Visual feedback
+      if (item.type === 'text') {
+        const el = document.getElementById(`item-${uid}`);
+        if (el) {
+          el.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+          el.disabled = true;
+          if (!isCorrect) el.value = studentAnswer + ' ✗';
+        }
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        if (group) {
+          group.querySelectorAll('.mc-option').forEach(btn => {
+            btn.disabled = true;
+            const val = btn.dataset.value || btn.textContent;
+            if (normalize(val) === normalize(item.answer)) {
+              btn.classList.add('reveal-correct');
+            } else if (btn.dataset.selected === 'true' && !isCorrect) {
+              btn.classList.add('wrong-answer');
+            }
+          });
+        }
       }
-    }
+    });
+
+    allResults.push(actResults);
   });
 
-  showResults(results, correct, act.items.length);
+  showResults(allResults, correct, total);
 }
 
 // ============================================================
 // RESULTS
 // ============================================================
-function showResults(results, correct, total) {
+function showResults(allResults, correct, total) {
   document.getElementById('activity-screen').style.display = 'none';
   const rs = document.getElementById('results-screen');
   rs.style.display = 'block';
 
   document.getElementById('score-num').textContent = correct;
-  document.getElementById('score-total').textContent = `out of ${total}`;
+  document.getElementById('score-total').textContent = `out of ${total} questions`;
 
   const pct = Math.round((correct / total) * 100);
   let label = '', msg = '';
@@ -1560,26 +1637,33 @@ function showResults(results, correct, total) {
   document.getElementById('score-label').textContent = label;
   document.getElementById('score-msg').textContent = msg;
 
-  // Feedback
   let fbHtml = '';
-  results.forEach((r, idx) => {
-    const cls = r.isCorrect ? 'correct' : 'wrong';
-    const badge = r.isCorrect ? '✓ Correct' : '✗ Incorrect';
-    fbHtml += `
-      <div class="feedback-item ${cls}">
-        <div class="feedback-top">
-          <span class="feedback-badge ${cls}">${badge}</span>
-          <div class="feedback-q"><strong>Item ${r.item.id}</strong> — ${r.item.type === 'mc' ? 'Multiple Choice' : 'Fill in the Blank'}</div>
-        </div>
-        <div class="feedback-answers">
-          Your answer: <span style="color:${r.isCorrect ? 'var(--correct)' : 'var(--wrong)'}">${r.studentAnswer}</span>
-          ${!r.isCorrect ? ` &nbsp;|&nbsp; Correct answer: <span style="color:var(--correct)">${r.item.answer}</span>` : ''}
-        </div>
-        <div class="feedback-why">💡 ${r.item.explanation}</div>
-      </div>`;
-  });
-  document.getElementById('feedback-list').innerHTML = fbHtml;
+  allResults.forEach(actResult => {
+    fbHtml += `<div style="margin-top:24px; margin-bottom:8px;">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:0.85rem; letter-spacing:4px; color:var(--gold); background:linear-gradient(135deg,var(--cream),var(--parchment)); padding:10px 18px; border-radius:3px; border-left:4px solid var(--gold); box-shadow:0 2px 10px #00000033;">
+        ${actResult.actTitle}
+      </div>
+    </div>`;
 
+    actResult.items.forEach(r => {
+      const cls = r.isCorrect ? 'correct' : 'wrong';
+      const badge = r.isCorrect ? '✓ Correct' : '✗ Incorrect';
+      fbHtml += `
+        <div class="feedback-item ${cls}">
+          <div class="feedback-top">
+            <span class="feedback-badge ${cls}">${badge}</span>
+            <div class="feedback-q"><strong>Item ${r.item.id}</strong> — ${r.item.type === 'mc' ? 'Multiple Choice' : 'Fill in the Blank'}</div>
+          </div>
+          <div class="feedback-answers">
+            Your answer: <span style="color:${r.isCorrect ? 'var(--correct)' : 'var(--wrong)'}">${r.studentAnswer}</span>
+            ${!r.isCorrect ? ` &nbsp;|&nbsp; Correct answer: <span style="color:var(--correct)">${r.item.answer}</span>` : ''}
+          </div>
+          <div class="feedback-why">💡 ${r.item.explanation}</div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('feedback-list').innerHTML = fbHtml;
   rs.scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -1608,10 +1692,8 @@ window.addEventListener('blur', () => {
   if (!submitted) triggerTabWarning();
 });
 
-// Prevent right-click
 document.addEventListener('contextmenu', e => e.preventDefault());
 
-// Prevent common keyboard shortcuts for new tabs/windows
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && ['t','n','w','Tab'].includes(e.key)) {
     e.preventDefault();
