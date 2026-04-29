@@ -396,6 +396,44 @@
     border-left: 2px solid #c9922a44;
   }
 
+  /* WORD BANK (text-type items) */
+  .word-bank-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: middle;
+    margin: 2px 4px;
+    gap: 4px;
+  }
+  .word-bank-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--deep-red);
+    text-align: center;
+  }
+  .word-bank-options {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+  }
+  .wb-option {
+    padding: 2px 11px;
+    border: 1.5px solid #c9922a88;
+    border-radius: 20px;
+    background: #fff9f0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.95rem;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .wb-option:hover { background: #f5e6c8; border-color: var(--gold); }
+  .wb-option.selected { background: var(--deep-red); color: var(--gold); border-color: var(--deep-red); }
+  .wb-option.reveal-correct { background: var(--correct); color: white; border-color: var(--correct); }
+  .wb-option.wrong-answer { background: var(--wrong); color: white; border-color: var(--wrong); text-decoration: line-through; }
+
   /* FILL-IN INPUTS */
   .blank-input {
     display: inline-block;
@@ -826,7 +864,7 @@
     </div>
 
     <div class="act-instruction">
-      <strong>Instructions / Instrucciones:</strong> You are a student assistant to a famous Spanish playwright. Complete all 4 of your assigned Acts by filling in the missing words. Some items are <strong>multiple choice</strong> — click the correct option. Others require you to <strong>type the answer</strong> in the blank. Pay close attention to vocabulary, verb tense (preterite &amp; imperfect), and context clues.<br>
+      <strong>Instructions / Instrucciones:</strong> You are a student assistant to a famous Spanish playwright. This activity is designed to build your mastery of <strong>Unit 6 — De Viaje</strong> vocabulary. Complete all 4 of your assigned Acts by selecting or filling in the missing words. <strong>Multiple choice</strong> items — click the correct option. <strong>Word bank</strong> items (marked with 📖) — choose from the 5 vocabulary words provided. Pay close attention to verb tense (preterite &amp; imperfect) and context clues from the dialogue.<br>
       <span style="color:var(--deep-red); font-weight:600;">⚠️ You have ONE attempt. Once you submit all acts, your answers are final.</span>
     </div>
 
@@ -1451,6 +1489,44 @@ const allActs = [
 ];
 
 // ============================================================
+// UNIT 6 — DE VIAJE VOCABULARY POOL
+// Used to generate 4 random distractors for word-bank items
+// ============================================================
+const unit6Pool = [
+  // Transportation & airport
+  'el aeropuerto', 'el avión', 'el vuelo', 'la aerolínea', 'el piloto',
+  'la azafata', 'el auxiliar de vuelo', 'la tarjeta de embarque', 'el pasaporte',
+  'el equipaje', 'el equipaje de mano', 'la maleta', 'la mochila', 'la bolsa',
+  'facturar el equipaje', 'hacer escala', 'el vuelo directo', 'el retraso',
+  'despegar', 'aterrizar', 'la salida', 'la llegada', 'la puerta', 'la escala',
+  'el chaleco salvavidas', 'primera clase', 'clase turista',
+  // Train & bus
+  'el tren', 'el autobús', 'la estación', 'el andén', 'el vagón', 'la vía',
+  'el pasillo', 'la parada', 'el boleto', 'boleto sencillo', 'boletos de ida y vuelta',
+  // Hotel
+  'el hotel', 'la habitación', 'la habitación doble', 'la habitación sencilla',
+  'la recepción', 'el recepcionista', 'el huésped', 'la llave', 'la toalla',
+  'la almohada', 'la percha', 'la factura',
+  // Car & road
+  'el coche', 'manejar', 'el volante', 'el freno', 'el acelerador', 'el embrague',
+  'el faro', 'la rueda', 'la llanta', 'el motor', 'la gasolinera', 'el tanque de gasolina',
+  'llenar', 'estacionar', 'arrancar', 'la autoescuela', 'la licencia de conducir',
+  'ponerle una multa', 'la multa',
+  // Money & travel prep
+  'la agencia de viajes', 'el folleto', 'el horario', 'el mapa', 'la tarifa',
+  'cambiar dinero', 'sacar dinero', 'el cajero automatico', 'el cheque',
+  // People & verbs
+  'el viajero', 'el pasajero', 'viajar', 'llegar', 'salir', 'volver', 'regresar',
+  'reservar', 'visitar', 'explorar', 'perderse', 'encontrar',
+  // Verb forms (imperfect / preterite distractors)
+  'viajaba', 'viajé', 'viajó', 'tomaba', 'tomé', 'tomó',
+  'era', 'fue', 'estaba', 'estuvo', 'tenía', 'tuvo',
+  'hacía', 'hizo', 'iba', 'fui', 'sabía', 'supo',
+  'manejaba', 'manejé', 'manejó', 'recibía', 'recibí', 'soñaba', 'soñé',
+  'hubiera sido', 'habría sido', 'volvemos', 'volvimos', 'volvía'
+];
+
+// ============================================================
 // STATE
 // ============================================================
 let currentStudent = null;
@@ -1560,10 +1636,33 @@ function renderAllActs() {
   container.innerHTML = fullHtml;
 }
 
+// Generate a shuffled word bank of 5: correct answer + 4 random distractors
+function generateWordBank(correctAnswer) {
+  const normalize = s => s.toLowerCase().replace(/[áàä]/g,'a').replace(/[éèë]/g,'e')
+    .replace(/[íìï]/g,'i').replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n').trim();
+  const normCorrect = normalize(correctAnswer);
+
+  // Filter pool to exclude the correct answer and near-duplicates
+  const pool = unit6Pool.filter(w => normalize(w) !== normCorrect);
+
+  // Shuffle pool and pick 4 distractors
+  const shuffled = pool.sort(() => Math.random() - 0.5);
+  const distractors = shuffled.slice(0, 4);
+
+  // Combine and shuffle all 5
+  const all = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
+  return all;
+}
+
 function renderBlank(item, actIdx) {
   const uid = `a${actIdx}i${item.id}`;
   if (item.type === 'text') {
-    return `<span class="item-num">${item.id}</span><input class="blank-input" id="item-${uid}" type="text" placeholder="___" autocomplete="off" spellcheck="false" />`;
+    const wordBank = generateWordBank(item.answer);
+    let opts = '';
+    wordBank.forEach(word => {
+      opts += `<button class="wb-option" onclick="selectWB('${uid}', '${word.replace(/'/g,"\\'")}', this)" data-value="${word.replace(/"/g,'&quot;')}">${word}</button>`;
+    });
+    return `<span class="item-num">${item.id}</span><span class="word-bank-wrap"><span class="word-bank-label">📖 Word Bank</span><span class="word-bank-options" id="wb-${uid}">${opts}</span></span>`;
   } else {
     let opts = '';
     item.options.forEach(opt => {
@@ -1571,6 +1670,15 @@ function renderBlank(item, actIdx) {
     });
     return `<span class="item-num">${item.id}</span><span class="mc-group" id="mc-${uid}">${opts}</span>`;
   }
+}
+
+function selectWB(uid, value, btn) {
+  if (submitted) return;
+  const group = document.getElementById(`wb-${uid}`);
+  group.querySelectorAll('.wb-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  btn.dataset.selected = 'true';
+  group.dataset.selected = value;
 }
 
 function selectMC(uid, value, btn) {
@@ -1594,8 +1702,8 @@ function handleSubmit() {
     act.items.forEach(item => {
       const uid = `a${actIdx}i${item.id}`;
       if (item.type === 'text') {
-        const val = document.getElementById(`item-${uid}`)?.value.trim();
-        if (!val) allAnswered = false;
+        const group = document.getElementById(`wb-${uid}`);
+        if (!group?.dataset.selected) allAnswered = false;
       } else {
         const group = document.getElementById(`mc-${uid}`);
         if (!group?.dataset.selected) allAnswered = false;
@@ -1624,8 +1732,10 @@ function handleSubmit() {
     act.items.forEach(item => {
       const uid = `a${actIdx}i${item.id}`;
       let studentAnswer = '';
+
       if (item.type === 'text') {
-        studentAnswer = document.getElementById(`item-${uid}`)?.value.trim() || '(no answer)';
+        const group = document.getElementById(`wb-${uid}`);
+        studentAnswer = group?.dataset.selected || '(no answer)';
       } else {
         const group = document.getElementById(`mc-${uid}`);
         studentAnswer = group?.dataset.selected || '(no answer)';
@@ -1639,11 +1749,17 @@ function handleSubmit() {
 
       // Visual feedback
       if (item.type === 'text') {
-        const el = document.getElementById(`item-${uid}`);
-        if (el) {
-          el.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
-          el.disabled = true;
-          if (!isCorrect) el.value = studentAnswer + ' ✗';
+        const group = document.getElementById(`wb-${uid}`);
+        if (group) {
+          group.querySelectorAll('.wb-option').forEach(btn => {
+            btn.disabled = true;
+            const val = btn.dataset.value || btn.textContent;
+            if (normalize(val) === normalize(item.answer)) {
+              btn.classList.add('reveal-correct');
+            } else if (btn.dataset.selected === 'true' && !isCorrect) {
+              btn.classList.add('wrong-answer');
+            }
+          });
         }
       } else {
         const group = document.getElementById(`mc-${uid}`);
@@ -1704,7 +1820,7 @@ function showResults(allResults, correct, total) {
         <div class="feedback-item ${cls}">
           <div class="feedback-top">
             <span class="feedback-badge ${cls}">${badge}</span>
-            <div class="feedback-q"><strong>Item ${r.item.id}</strong> — ${r.item.type === 'mc' ? 'Multiple Choice' : 'Fill in the Blank'}</div>
+            <div class="feedback-q"><strong>Item ${r.item.id}</strong> — ${r.item.type === 'mc' ? 'Multiple Choice' : 'Word Bank'}</div>
           </div>
           <div class="feedback-answers">
             Your answer: <span style="color:${r.isCorrect ? 'var(--correct)' : 'var(--wrong)'}">${r.studentAnswer}</span>
