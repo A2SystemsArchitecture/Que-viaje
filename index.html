@@ -860,7 +860,7 @@
   </div><!-- end signin-screen -->
 
   <!-- ACTIVITY SCREEN -->
-  <div id="activity-screen">
+  <div id="activity-screen" style="display:none;">
     <div class="act-header">
       <div class="act-student-info" id="act-student-info"></div>
       <div class="act-number" id="act-number-label"></div>
@@ -916,7 +916,7 @@
   </div>
 
   <!-- RESULTS SCREEN -->
-  <div id="results-screen">
+  <div id="results-screen" style="display:none;">
     <div class="results-header">
       <div class="score-circle">
         <div class="score-num" id="score-num">0</div>
@@ -1621,6 +1621,9 @@ function showActivity() {
   const screen = document.getElementById('activity-screen');
   screen.style.display = 'block';
 
+  // Scroll to very top after render
+  setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
+
   document.getElementById('act-student-info').textContent =
     `${currentStudent.first} ${currentStudent.last} · ${currentStudent.period}`;
 
@@ -2017,7 +2020,7 @@ function showResults(allResults, correct, total, playwrightCorrect, bonusPlaywri
   });
 
   document.getElementById('feedback-list').innerHTML = fbHtml;
-  rs.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
 
   // Kick off async AI grading for bonus
   gradeBonus(playwrightCorrect, bonusPlaywright, bonusResponse);
