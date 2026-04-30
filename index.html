@@ -5,7 +5,2071 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <meta http-equiv="Content-Language" content="en">
+<title>Que Viaje - Spani<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="en">
 <title>Que Viaje - Spanish Assessment</title>
+<!-- Block Google Translate BEFORE any content loads -->
+<script>
+(function() {
+  document.documentElement.setAttribute('translate', 'no');
+  document.documentElement.classList.add('notranslate');
+  var obs = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          var tag = (node.tagName || '').toLowerCase();
+          var id  = (node.id || '').toLowerCase();
+          var cls = (node.className || '').toString().toLowerCase();
+          if (tag === 'cr-translate-bubble' || id.indexOf('translate') > -1 ||
+              cls.indexOf('translate') > -1 || tag === 'translate-section') {
+            node.remove();
+          }
+        }
+      });
+    });
+  });
+  obs.observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6e9;
+    --parchment: #f5e6c8;
+    --deep-red: #8b1a1a;
+    --gold: #c9922a;
+    --dark-gold: #a07020;
+    --ink: #1a1208;
+    --warm-gray: #6b5e4e;
+    --stage-green: #2d5a3d;
+    --spotlight: #fff8e7;
+    --border: #c9922a44;
+    --correct: #2d5a3d;
+    --wrong: #8b1a1a;
+    --neutral: #6b5e4e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background-color: var(--ink);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* CURTAIN BACKGROUND */
+  .stage-bg {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, #3a1a00 0%, var(--ink) 70%);
+    z-index: 0;
+  }
+  .stage-bg::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--deep-red), var(--gold), var(--deep-red), var(--gold), var(--deep-red));
+  }
+
+  /* CURTAIN PANELS */
+  .curtain-left, .curtain-right {
+    position: fixed;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .curtain-left {
+    left: 0;
+    background: linear-gradient(to right, #5a0a0a, #8b1a1a88, transparent);
+  }
+  .curtain-right {
+    right: 0;
+    background: linear-gradient(to left, #5a0a0a, #8b1a1a88, transparent);
+  }
+
+  /* MAIN WRAPPER */
+  .wrapper {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 60px;
+  }
+
+  /* TITLE HEADER */
+  .play-header {
+    text-align: center;
+    margin-bottom: 32px;
+    animation: fadeDown 0.8s ease both;
+  }
+  .play-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 900;
+    font-style: italic;
+    color: var(--gold);
+    text-shadow: 0 2px 20px #c9922a66, 0 0 60px #c9922a33;
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .play-subtitle {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    color: #c9a96e;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    font-weight: 300;
+  }
+  .title-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+    justify-content: center;
+  }
+  .title-divider span {
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .title-divider span:last-child {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+  .title-divider .star { color: var(--gold); font-size: 1rem; }
+
+  /* PLAYWRIGHT CARD */
+  .playwright-card {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--parchment) 100%);
+    border: 2px solid var(--gold);
+    border-radius: 4px 4px 0 0;
+    padding: 28px 36px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 8px 40px #00000066, inset 0 1px 0 #ffffff44;
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+  .playwright-card::before {
+    content: '\201C';
+    position: absolute;
+    top: -10px; left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .playwright-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 36px; right: 36px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .playwright-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--deep-red);
+    margin-bottom: 6px;
+  }
+  .playwright-era {
+    font-size: 0.85rem;
+    color: var(--warm-gray);
+    font-style: italic;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+  .playwright-intro {
+    font-size: 1.05rem;
+    color: #3a2a1a;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  /* SIGN-IN CARD */
+  .signin-card {
+    background: linear-gradient(160deg, #fdf0d5, var(--parchment));
+    border: 2px solid var(--gold);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 28px 36px 32px;
+    width: 100%;
+    box-shadow: 0 12px 50px #00000077, inset 0 1px 0 #ffffff55;
+    animation: fadeUp 0.8s 0.4s ease both;
+    position: relative;
+  }
+  .card-bridge {
+    background: linear-gradient(90deg, var(--deep-red), #6b0f0f, var(--deep-red));
+    border-left: 2px solid var(--gold);
+    border-right: 2px solid var(--gold);
+    padding: 8px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeDown 0.8s 0.3s ease both;
+  }
+  .card-bridge-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* SIGN-IN TITLE */
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--deep-red);
+    text-align: center;
+    margin-bottom: 6px;
+  }
+  .signin-sub {
+    text-align: center;
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 540px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+  .form-group {
+    margin-bottom: 18px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #c9922a66;
+    border-radius: 3px;
+    background: #fff9f0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.1rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px #c9922a22;
+  }
+  .btn-signin {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--deep-red), #6b0f0f);
+    color: var(--gold);
+    border: none;
+    border-radius: 3px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+    box-shadow: 0 4px 20px #8b1a1a55;
+  }
+  .btn-signin:hover {
+    background: linear-gradient(135deg, #a01f1f, var(--deep-red));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px #8b1a1a77;
+  }
+
+  /* ACTIVITY SCREEN */
+  #activity-screen { display: none; width: 100%; max-width: 760px; }
+
+  .act-header {
+    text-align: center;
+    margin-bottom: 24px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .act-student-info {
+    font-size: 0.9rem;
+    color: #c9a96e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .act-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 900;
+    color: var(--gold);
+    text-shadow: 0 2px 12px #c9922a55;
+  }
+  .act-instruction {
+    background: linear-gradient(135deg, var(--cream), var(--parchment));
+    border-left: 4px solid var(--gold);
+    border-radius: 0 3px 3px 0;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #3a2a1a;
+    line-height: 1.6;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .act-instruction strong { color: var(--deep-red); }
+
+  /* SCENE CARD */
+  .scene-card {
+    background: linear-gradient(160deg, var(--cream) 0%, #fdf0d5 100%);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 30px #00000055;
+    animation: fadeUp 0.6s 0.2s ease both;
+    position: relative;
+  }
+  .scene-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--deep-red), var(--gold), var(--deep-red));
+    border-radius: 4px 4px 0 0;
+  }
+  .scene-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    color: var(--deep-red);
+    margin-bottom: 16px;
+  }
+  .scene-setting {
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed #c9922a55;
+  }
+
+  /* DIALOGUE */
+  .dialogue-line {
+    margin-bottom: 16px;
+    line-height: 1.75;
+  }
+  .speaker {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--deep-red);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+  .dialogue-text {
+    font-size: 1.08rem;
+    color: #2a1a08;
+    line-height: 1.75;
+  }
+  .stage-direction {
+    font-style: italic;
+    color: var(--warm-gray);
+    font-size: 0.93rem;
+    margin: 10px 0;
+    padding-left: 16px;
+    border-left: 2px solid #c9922a44;
+  }
+
+  /* WORD BANK (text-type items) — displayed below the dialogue line */
+  .word-bank-block {
+    display: block;
+    margin: 6px 0 14px 28px;
+    padding: 6px 12px;
+    background: #fff3d8;
+    border: 1px dashed #c9922a88;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .word-bank-block-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--deep-red);
+    white-space: nowrap;
+    margin-right: 4px;
+  }
+  .wb-word {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.92rem;
+    color: var(--warm-gray);
+    font-style: italic;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+  }
+  .wb-word::after {
+    content: ' ·';
+    color: #c9922a66;
+  }
+  .wb-word:last-child::after {
+    content: '';
+  }
+
+  /* FILL-IN INPUTS */
+  .blank-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--deep-red);
+    background: transparent;
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.08rem;
+    color: var(--ink);
+    width: 140px;
+    padding: 2px 6px;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+    vertical-align: baseline;
+  }
+  .blank-input:focus {
+    border-color: var(--gold);
+    background: #fff9f022;
+  }
+  .blank-input.answered-correct {
+    border-color: var(--correct);
+    background: #2d5a3d18;
+    color: var(--correct);
+  }
+  .blank-input.answered-wrong {
+    border-color: var(--wrong);
+    background: #8b1a1a18;
+    color: var(--wrong);
+    text-decoration: line-through;
+  }
+
+  /* MULTIPLE CHOICE */
+  .mc-group {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    vertical-align: middle;
+    margin: 0 4px;
+  }
+  .mc-option {
+    padding: 3px 12px;
+    border: 1.5px solid #c9922a88;
+    border-radius: 20px;
+    background: #fff9f0;
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.97rem;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .mc-option:hover { background: #f5e6c8; border-color: var(--gold); }
+  .mc-option.selected { background: var(--deep-red); color: var(--gold); border-color: var(--deep-red); }
+  .mc-option.correct-answer { background: var(--correct); color: white; border-color: var(--correct); }
+  .mc-option.wrong-answer { background: var(--wrong); color: white; border-color: var(--wrong); text-decoration: line-through; }
+  .mc-option.reveal-correct { background: var(--correct); color: white; border-color: var(--correct); }
+
+  /* ITEM NUMBERS */
+  .item-num {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background: var(--deep-red);
+    color: var(--gold);
+    border-radius: 50%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 22px;
+    margin-right: 4px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  /* SUBMIT BUTTON */
+  .submit-area {
+    text-align: center;
+    margin-top: 10px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+  .btn-submit {
+    padding: 16px 48px;
+    background: linear-gradient(135deg, var(--stage-green), #1a3d28);
+    color: #a8d5b5;
+    border: 2px solid #4a8f6a;
+    border-radius: 3px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-style: italic;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px #00000055;
+    letter-spacing: 1px;
+  }
+  .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px #00000066;
+    background: linear-gradient(135deg, #3a7a52, var(--stage-green));
+  }
+  .btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .attempt-warning {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    color: #c9a96e;
+    font-style: italic;
+  }
+
+  /* RESULTS */
+  #results-screen { display: none; width: 100%; max-width: 760px; }
+
+  .results-header {
+    text-align: center;
+    margin-bottom: 28px;
+    animation: fadeDown 0.6s ease both;
+  }
+  .score-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    background: linear-gradient(135deg, var(--cream), var(--parchment));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 0 40px #c9922a44;
+  }
+  .score-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--deep-red);
+    line-height: 1;
+  }
+  .score-total {
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    font-style: italic;
+  }
+  .score-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .score-msg {
+    color: #c9a96e;
+    font-size: 1rem;
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* FEEDBACK ITEMS */
+  .feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .feedback-item {
+    background: linear-gradient(135deg, var(--cream), var(--parchment));
+    border-radius: 4px;
+    padding: 18px 22px;
+    border-left: 5px solid var(--neutral);
+    box-shadow: 0 3px 15px #00000044;
+  }
+  .feedback-item.correct { border-left-color: var(--correct); }
+  .feedback-item.wrong { border-left-color: var(--wrong); }
+  .feedback-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .feedback-badge {
+    flex-shrink: 0;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .feedback-badge.correct { background: var(--correct); color: white; }
+  .feedback-badge.wrong { background: var(--wrong); color: white; }
+  .feedback-q {
+    font-size: 1rem;
+    color: var(--ink);
+    line-height: 1.5;
+    flex: 1;
+  }
+  .feedback-answers {
+    font-size: 0.93rem;
+    color: #3a2a1a;
+    margin-bottom: 6px;
+  }
+  .feedback-answers span { font-weight: 600; }
+  .feedback-why {
+    font-size: 0.9rem;
+    color: var(--warm-gray);
+    font-style: italic;
+    line-height: 1.5;
+    padding-top: 6px;
+    border-top: 1px dashed #c9922a44;
+  }
+
+  /* LOCKOUT OVERLAY */
+  #lockout-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000000ee;
+    z-index: 9999;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  #lockout-overlay.active { display: flex; }
+  .lockout-icon { font-size: 4rem; margin-bottom: 20px; }
+  .lockout-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .lockout-msg {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.2rem;
+    color: #c9a96e;
+    max-width: 500px;
+    line-height: 1.7;
+  }
+
+  /* WARNING TOAST */
+  #tab-warning {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--deep-red);
+    color: var(--gold);
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    z-index: 9998;
+    box-shadow: 0 4px 20px #00000088;
+    text-align: center;
+    max-width: 90vw;
+    border: 1px solid var(--gold);
+  }
+  #tab-warning.show { display: block; animation: slideDown 0.3s ease; }
+
+  /* ANIMATIONS */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+  }
+
+  .act-progress {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .progress-pip {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #c9922a44;
+    border: 1.5px solid var(--gold);
+    transition: background 0.3s;
+  }
+  .progress-pip.done { background: var(--correct); border-color: var(--correct); }
+  .progress-pip.active { background: var(--gold); border-color: var(--gold); }
+
+  /* ACT DIVIDER */
+  .act-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 20px;
+  }
+  .act-divider::before, .act-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .act-divider::after {
+    background: linear-gradient(to left, transparent, var(--gold));
+  }
+  .act-divider-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* FOOTER */
+  .page-footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #c9a96e66;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ERROR */
+  .error-msg {
+    color: var(--deep-red);
+    font-size: 0.88rem;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* Utility */
+  .hidden { display: none !important; }
+  .gold { color: var(--gold); }
+  .red { color: var(--deep-red); }
+</style>
+</head>
+<body>
+
+<div class="stage-bg"></div>
+<div class="curtain-left"></div>
+<div class="curtain-right"></div>
+
+<!-- LOCKOUT OVERLAY -->
+<div id="lockout-overlay">
+  <div class="lockout-icon">🔒</div>
+  <div class="lockout-title">Assessment Locked</div>
+  <div class="lockout-msg">
+    You navigated away from the assessment more than once.<br><br>
+    <strong style="color:var(--gold);">Your access has been permanently revoked.</strong><br><br>
+    Please see your teacher to discuss next steps.
+  </div>
+</div>
+
+<!-- TAB WARNING -->
+<div id="tab-warning">
+  ⚠️ Warning: You left the assessment window! Return immediately. A second violation will lock your exam permanently.
+</div>
+
+<div class="wrapper">
+
+  <!-- TITLE -->
+  <div class="play-header">
+    <div class="play-title">¡Qué Viaje!</div>
+    <div class="play-subtitle">Una Comedia Dramática en 20 Actos</div>
+    <div class="title-divider">
+      <span></span>
+      <div class="star">✦</div>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- SIGN-IN SCREEN -->
+  <div id="signin-screen" style="width:100%;max-width:680px;display:flex;flex-direction:column;align-items:stretch;gap:0;">
+
+    <!-- PLAYWRIGHT CARD -->
+    <div class="playwright-card" id="playwright-card"></div>
+
+    <!-- SECTION DIVIDER -->
+    <div class="card-bridge">
+      <span class="card-bridge-label">🎭 Your Assignment</span>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <div class="signin-card">
+      <div class="signin-title">🎭 Student Sign-In</div>
+      <div class="signin-sub">Enter your information to receive your assigned Acts</div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" id="first-name" placeholder="e.g. Maria" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" id="last-name" placeholder="e.g. Garcia" autocomplete="off" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Class Period</label>
+        <select id="period">
+          <option value="">-- Select your period --</option>
+          <option value="Period 5">Period 5</option>
+          <option value="Period 6">Period 6</option>
+          <option value="Period 7">Period 7</option>
+        </select>
+      </div>
+      <div id="signin-error" class="error-msg hidden"></div>
+      <button class="btn-signin" onclick="handleSignIn()">Let's Begin — Empecemos!</button>
+    </div>
+
+  </div><!-- end signin-screen -->
+
+  <!-- ACTIVITY SCREEN -->
+  <div id="activity-screen">
+    <div class="act-header">
+      <div class="act-student-info" id="act-student-info"></div>
+      <div class="act-number" id="act-number-label"></div>
+      <div class="act-progress" id="act-progress"></div>
+    </div>
+
+    <div class="act-instruction">
+      <strong>Instructions / Instrucciones:</strong> This assessment has <strong>21 questions worth 25 points total</strong> and covers <strong>Unit 6 — De Viaje</strong> vocabulary. Questions 1–20 (1 pt each) — complete all 4 assigned Acts by selecting or filling in the missing words. <strong>Multiple choice</strong> items — click the correct option. <strong>Word bank</strong> items (📖) — read the bank and type the correct word in the blank. <strong>Question 21</strong> (5 pts) — identify your playwright and write about them in Spanish. Pay close attention to verb tense (preterite &amp; imperfect) and context clues.<br>
+      <span style="color:var(--deep-red); font-weight:600;">⚠️ You have ONE attempt. Once you submit, your answers are final.</span>
+    </div>
+
+    <div id="act-content"></div>
+
+    <!-- QUESTION 21 -->
+    <div class="act-divider" style="margin-top:32px;"><div class="act-divider-label">✦ Question 21 — Playwright Reflection ✦</div></div>
+    <div class="scene-card" id="bonus-card">
+      <div class="scene-label">Question 21 of 21 — Open Response · 5 Points</div>
+      <div class="scene-setting" style="margin-bottom:20px;">
+        <em>You have been working alongside a famous Spanish playwright today. Now demonstrate what you learned about them.</em>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <div class="form-group">
+          <label style="font-family:'Bebas Neue',sans-serif; font-size:0.9rem; letter-spacing:3px; color:var(--deep-red); text-transform:uppercase; margin-bottom:8px; display:block;">
+            <span class="item-num" style="margin-right:6px;">21a</span> Which playwright did you work with today? <span style="font-family:'Crimson Pro',serif; font-weight:400; letter-spacing:0; font-size:0.85rem; color:var(--warm-gray); text-transform:none;">(1 point)</span>
+          </label>
+          <select id="bonus-playwright" style="width:100%; padding:12px 16px; border:1.5px solid #c9922a66; border-radius:3px; background:#fff9f0; font-family:'Crimson Pro',serif; font-size:1.1rem; color:var(--ink); outline:none;">
+            <option value="">-- Select the playwright --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="font-family:'Bebas Neue',sans-serif; font-size:0.9rem; letter-spacing:3px; color:var(--deep-red); text-transform:uppercase; margin-bottom:8px; display:block;">
+          <span class="item-num" style="margin-right:6px;">21b</span> In Spanish — write what you learned about this playwright from the introduction. <span style="font-family:'Crimson Pro',serif; font-weight:400; letter-spacing:0; font-size:0.85rem; color:var(--warm-gray); text-transform:none;">(4 points)</span>
+        </label>
+        <div style="font-size:0.88rem; color:var(--warm-gray); font-style:italic; margin-bottom:8px;">
+          Escribe en español. Include facts from the introduction: who they were, what they wrote, when they lived, or anything else that stood out to you.
+        </div>
+        <textarea id="bonus-response" rows="5" placeholder="Escribe aquí en español..." style="width:100%; padding:12px 16px; border:1.5px solid #c9922a66; border-radius:3px; background:#fff9f0; font-family:'Crimson Pro',serif; font-size:1.1rem; color:var(--ink); outline:none; resize:vertical; line-height:1.6; transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='#c9922a66'"></textarea>
+        <div style="font-size:0.82rem; color:var(--warm-gray); margin-top:6px; font-style:italic;">
+          📝 Part A: 1 pt — correct playwright identified · Part B: 0–4 pts — Spanish response graded on content from the introduction
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-area">
+      <button class="btn-submit" id="submit-btn" onclick="handleSubmit()">
+        🎭 Submit Assessment — ¡Entregar!
+      </button>
+      <div class="attempt-warning">21 questions total. This is your one and only attempt. There is no going back.</div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results-screen">
+    <div class="results-header">
+      <div class="score-circle">
+        <div class="score-num" id="score-num">0</div>
+        <div class="score-total" id="score-total">out of 0</div>
+      </div>
+      <div class="score-label" id="score-label"></div>
+      <div class="score-msg" id="score-msg"></div>
+    </div>
+    <div class="feedback-list" id="feedback-list"></div>
+    <div id="bonus-result-section" class="hidden" style="margin-top:28px;"></div>
+  </div>
+
+  <div class="page-footer">¡Qué Viaje! · Spanish 2 · Unit 6 Vocabulary Assessment</div>
+</div><!-- end wrapper -->
+
+<script>
+// ============================================================
+// PLAYWRIGHTS
+// ============================================================
+const playwrights = [
+  {
+    name: "Lope de Vega",
+    era: "1562–1635 · Golden Age of Spain",
+    intro: "I am Lope Félix de Vega Carpio, and I wrote more than 1,500 plays in my lifetime — yes, you read that correctly. I practically invented the Spanish theatrical tradition as you know it, blending comedy, tragedy, and the passions of everyday life. Today, I need brilliant student assistants like you to help me finish my latest masterpiece: ¡Qué Viaje!"
+  },
+  {
+    name: "Pedro Calderón de la Barca",
+    era: "1600–1681 · Spanish Golden Age",
+    intro: "I am Pedro Calderón de la Barca, philosopher of the stage and master of the auto sacramental. My plays wrestle with honor, fate, and the grand illusions of life — for as I wrote, 'life itself is a dream.' Now I need your sharp mind and your Spanish vocabulary to help me complete this travel comedy before the curtain rises!"
+  },
+  {
+    name: "Federico García Lorca",
+    era: "1898–1936 · Spanish Modernism",
+    intro: "I am Federico García Lorca — poet, playwright, dreamer, and proud son of Granada. My works burn with passion, color, and the rhythms of the Spanish soul. Today I ask you to lend me your knowledge of travel vocabulary to breathe life into the pages of ¡Qué Viaje! — a comedy as vivid as a Andalusian sunrise."
+  },
+  {
+    name: "Tirso de Molina",
+    era: "1579–1648 · Spanish Golden Age",
+    intro: "I am Tirso de Molina — the friar who gave the world Don Juan. I have always believed that the best theater holds up a mirror to human folly, and believe me, nothing reveals human folly quite like travel. Help me complete this dramedy, and I promise you will learn something both about Spanish and about life."
+  },
+  {
+    name: "Miguel de Cervantes",
+    era: "1547–1616 · Renaissance Spain",
+    intro: "I am Miguel de Cervantes — author of Don Quixote and tireless explorer of the human condition. I know a thing or two about journeys gone hilariously wrong, which is precisely why I am writing ¡Qué Viaje! Your mission today: rescue this play with your vocabulary knowledge before my characters miss every flight, lose every suitcase, and end up stranded in the wrong century."
+  },
+  {
+    name: "Lope de Rueda",
+    era: "c. 1510–1565 · Early Spanish Theater",
+    intro: "I am Lope de Rueda, and I brought theater to the streets of Spain — performed on wooden carts in town plazas for anyone who would watch. I love simple, funny, relatable stories about ordinary people in extraordinary situations. ¡Qué Viaje! is exactly that kind of play, and I need your vocabulary skills to make these scenes crackle with life!"
+  },
+  {
+    name: "Ana Caro de Mallén",
+    era: "c. 1590–1646 · Golden Age Playwright",
+    intro: "I am Ana Caro de Mallén — one of the few women paid professionally to write for the stage in Golden Age Spain, and I earned every maravedí. I wrote plays that were smart, witty, and unafraid. Today I invite you to join me in completing ¡Qué Viaje!, a comedy about the wonderful chaos of travel. Show me what you know!"
+  },
+  {
+    name: "Sor Juana Inés de la Cruz",
+    era: "1648–1695 · New Spain (Mexico)",
+    intro: "I am Sor Juana Inés de la Cruz — nun, scholar, poet, and the first published feminist writer of the Americas. I taught myself Latin at three years old and never stopped learning after that. I expect nothing less from you today: bring your full knowledge of Unit 6 vocabulary to complete this play and prove that learning knows no boundaries."
+  },
+  {
+    name: "Feliciana Enríquez de Guzmán",
+    era: "c. 1560–1640 · Golden Age Spain",
+    intro: "I am Feliciana Enríquez de Guzmán, and I wrote sprawling, ambitious dramas when women were told to stay silent. I refused. My play Tragicomedia de los jardines y campos sabeos ran for two long acts and broke every convention. Now I need your help with just one act of ¡Qué Viaje! — surely that is well within your abilities!"
+  },
+  {
+    name: "María de Zayas",
+    era: "1590–c. 1661 · Baroque Spain",
+    intro: "I am María de Zayas y Sotomayor, and my novellas shocked, thrilled, and illuminated the hidden lives of women in baroque Spain. I understood that drama lives in the details — the right word at the right moment can change everything. Today, those words are your Unit 6 vocabulary, and that moment is now. ¡Vamos!"
+  },
+  {
+    name: "Leonor de la Cueva y Silva",
+    era: "c. 1611–c. 1705 · Spanish Baroque",
+    intro: "I am Leonor de la Cueva y Silva, and though history has been slow to remember my name, I wrote comedies full of wit, heart, and sharp observation. I believe every student has a playwright inside them waiting to emerge. Today is your chance to prove it — fill in the missing words of ¡Qué Viaje! and help bring this story to life!"
+  }
+];
+
+// ============================================================
+// ALL 20 ACTS DATA
+// ============================================================
+
+const allActs = [
+  // ACT 1
+  {
+    actNum: 1,
+    title: "Act 1: El Gran Plan",
+    setting: "The Rodríguez family living room. MAMÁ sits at the table with brochures spread everywhere. PAPÁ reads the newspaper. ABUELA knits in the corner.",
+    dialogue: [
+      { type: 'direction', text: "Mamá spreads out colorful travel brochures across the table with great enthusiasm." },
+      { type: 'line', speaker: 'MAMÁ', text: ['¡Familia, tengo grandes noticias! Fui a ', {item:1}, ' ayer y reservé nuestras vacaciones. ¡Vamos a España!'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(lowering newspaper) ¿Qué? ¿Sin consultarme? ¿Y el ', {item:2}, '? ¿Cuánto cuesta todo esto?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Cálmate. El agente me dio un ', {item:3}, ' con todos los detalles — el hotel, los vuelos, las excursiones...'] },
+      { type: 'direction', text: "Abuela puts down her knitting and squints at the brochures." },
+      { type: 'line', speaker: 'ABUELA', text: ['Cuando era joven, yo ', {item:4}, ' a todos lados en tren. Era más romántico. Los aviones me dan miedo.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Mamá, con todo respeto, los tiempos cambiaron. Ahora todo el mundo ', {item:5}, ' en avión. Es más rápido.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(stubbornly) ¡Más rápido no significa mejor, Ernesto!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¡Suficiente! Tenemos los boletos. Salimos en dos semanas. ¡Hay mucho que preparar!'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'la agencia de viajes', options: ['la gasolinera', 'la agencia de viajes', 'la autoescuela', 'el banco'], explanation: '"La agencia de viajes" means "travel agency" — the place where you book vacations and trips. The other options are a gas station, driving school, and bank.' },
+      { id: 2, type: 'text', answer: 'horario', explanation: '"El horario" means "schedule." Papá is asking about the schedule/timing — a logical concern when planning a big trip.' },
+      { id: 3, type: 'mc', answer: 'folleto', options: ['mapa', 'folleto', 'boleto', 'cheque'], explanation: '"Un folleto" is a brochure — a printed document with travel details. A "mapa" is a map, "boleto" is a ticket, and "cheque" is a check.' },
+      { id: 4, type: 'text', answer: 'viajaba', explanation: '"Viajaba" is the imperfect tense of "viajar" — used here because Abuela is describing a repeated habit from her past ("when I was young, I used to travel everywhere by train").' },
+      { id: 5, type: 'mc', answer: 'viaja', options: ['viaja', 'viajó', 'viajaba', 'viajará'], explanation: '"Viaja" (present tense) is correct because Papá is making a general statement about what everyone does now. The imperfect "viajaba" describes past habits, and "viajó" is a completed past action.' },
+    ]
+  },
+
+  // ACT 2
+  {
+    actNum: 2,
+    title: "Act 2: Las Maletas",
+    setting: "The Rodríguez master bedroom. Suitcases everywhere. MAMÁ packs frantically. PAPÁ watches in disbelief. TEEN DAUGHTER VALENTINA scrolls her phone.",
+    dialogue: [
+      { type: 'direction', text: "Three enormous suitcases are open on the bed. Mamá folds and refolds the same blouse repeatedly." },
+      { type: 'line', speaker: 'PAPÁ', text: ['¡Tres maletas para diez días! Valentina, ayuda a tu mamá a entender que una ', {item:1}, ' por persona es suficiente.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(without looking up) Papá, necesito opciones. Y además, tengo que ', {item:2}, ' antes de mañana o voy a olvidar algo importante.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Tu padre tiene razón en una cosa — el ', {item:3}, ' dice que cada pasajero solo puede llevar una maleta de 23 kilos.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(finally looking up, horrified) ¿SOLO 23 kilos?! ¿Y el ', {item:4}, ' de mano?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Ocho kilos máximo. El ', {item:5}, ' del vuelo fue muy claro. Valentina, saca la mitad de esa ropa.'] },
+      { type: 'direction', text: "Valentina dramatically collapses on the bed among the clothes." },
+      { type: 'line', speaker: 'VALENTINA', text: ['¡Esto es una catástrofe! ¿Cómo voy a sobrevivir con tan poca ropa?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['(dryly) Los mismos viajeros sobrevivieron por siglos con mucho menos, mi amor.'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'maleta', options: ['bolsa', 'maleta', 'mochila', 'percha'], explanation: '"La maleta" means "suitcase." Papá says one suitcase per person is enough. "Bolsa" is bag, "percha" is hanger.' },
+      { id: 2, type: 'text', answer: 'hacer el equipaje', explanation: '"Hacer el equipaje" means "to pack" (your luggage). Valentina needs to pack before tomorrow or she\'ll forget something important.' },
+      { id: 3, type: 'mc', answer: 'horario', options: ['folleto', 'mapa', 'horario', 'boleto sencillo'], explanation: '"El horario" is the schedule/itinerary. Here, Mamá is referring to the airline\'s published rules/schedule that outlines the luggage policy.' },
+      { id: 4, type: 'text', answer: 'equipaje de mano', explanation: '"El equipaje de mano" means "carry-on luggage." Valentina is alarmed about the checked bag limit and asks about the carry-on allowance.' },
+      { id: 5, type: 'mc', answer: 'horario', options: ['agente de viajes', 'horario', 'folleto', 'retraso'], explanation: '"El horario" (schedule/itinerary) of the flight contained the luggage rules. "Retraso" means delay, "folleto" is brochure.' },
+    ]
+  },
+
+  // ACT 3
+  {
+    actNum: 3,
+    title: "Act 3: En la Estación de Autobuses",
+    setting: "A chaotic bus station. ABUELA insisted on taking the bus to the airport 'the old-fashioned way.' The family drags suitcases through the crowd.",
+    dialogue: [
+      { type: 'direction', text: "The family arrives at the bus station overwhelmed by noise and crowds." },
+      { type: 'line', speaker: 'ABUELA', text: ['¡Ven! La ', {item:1}, ' de autobús está por aquí. Conozco este lugar muy bien.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(checking phone) El autobús sale en quince minutos. Si ', {item:2}, ' este autobús, perdemos el vuelo.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Papá, relájate. Abuela, ¿cómo sabías dónde estaba la parada?'] },
+      { type: 'line', speaker: 'ABUELA', text: ['Porque cuando tenía cuarenta años, ', {item:3}, ' este autobús todos los días para ir al trabajo. Me sé cada parada de memoria.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Ay, qué romántico. Mira, aquí está el ', {item:4}, ' — el autobús número 7 sale a las 9:15.'] },
+      { type: 'direction', text: "A stranger bumps into Papá. His bag falls open. Papers scatter everywhere." },
+      { type: 'line', speaker: 'PAPÁ', text: ['(panicking) ¡Mi pasaporte! ¡Los boletos! ¿Dónde están mis documentos?'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(picking up papers) Tranquilo, Papá. Aquí están. Necesitas un ', {item:5}, ' más organizado.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(relieved, then embarrassed) Sí... tienes razón.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'parada', explanation: '"La parada de autobús" means "bus stop." Abuela knows exactly where it is from her years of commuting.' },
+      { id: 2, type: 'mc', answer: 'perdemos', options: ['perdemos', 'perdíamos', 'perdimos', 'perderemos'], explanation: '"Perdemos" (present tense) is used here in a conditional sense — "if we miss [the bus]" — expressing a real present/future possibility. "Perdimos" (preterite) would mean "we already missed it."' },
+      { id: 3, type: 'text', answer: 'tomaba', explanation: '"Tomaba" is the imperfect tense of "tomar" — used because Abuela is describing a repeated past habit (she used to take this bus every day for work). The imperfect expresses habitual past actions.' },
+      { id: 4, type: 'mc', answer: 'horario', options: ['horario', 'mapa', 'folleto', 'tarifa'], explanation: '"El horario" is the schedule — it shows what time bus #7 departs. "La tarifa" is the price/fare, "mapa" is a map.' },
+      { id: 5, type: 'mc', answer: 'bolsa', options: ['bolsa', 'maleta', 'folleto', 'cheque'], explanation: '"Una bolsa" is a bag. Valentina suggests her father needs a more organized bag. "Maleta" is a suitcase, which wouldn\'t be held in hand for documents.' },
+    ]
+  },
+
+  // ACT 4
+  {
+    actNum: 4,
+    title: "Act 4: ¡El Aeropuerto!",
+    setting: "The airport. Everyone is overwhelmed. Signs point in every direction. ABUELA has never been in an airport before.",
+    dialogue: [
+      { type: 'direction', text: "The automatic doors slide open. Abuela stops dead in her tracks, mouth open." },
+      { type: 'line', speaker: 'ABUELA', text: ['(whispering) Dios mío. ¡Qué enorme! ¿Por dónde se va para ', {item:1}, ' el equipaje?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Hay que ', {item:2}, ' primero. La aerolínea necesita pesar las maletas y darnos las tarjetas de embarque.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Ya hice el check-in en línea. Aquí están nuestras ', {item:3}, '. No necesitamos hacer fila.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Muy bien, Valentina. Pero igual tenemos que entregar las maletas. El mostrador está por allá.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(nervously gripping her purse) ¿Y si el avión tiene un problema? ¿Dónde está el ', {item:4}, '? ¿Uno para cada persona?'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(trying not to laugh) Abuela, el chaleco salvavidas está debajo del asiento. El auxiliar de vuelo nos explica todo.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['¿El o la ', {item:5}, '? En mis tiempos, se llamaban "azafatas."'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Ahora se llaman auxiliares de vuelo, mamá. ¡Vamos, que perdemos el tiempo!'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'facturar', options: ['facturar', 'aterrizar', 'despegar', 'hacer escala'], explanation: '"Facturar el equipaje" means "to check luggage." Abuela wants to know where to check their bags. "Aterrizar" = to land, "despegar" = to take off.' },
+      { id: 2, type: 'text', answer: 'facturar el equipaje', explanation: '"Facturar el equipaje" means "to check luggage." The airline needs to weigh the bags and issue boarding passes.' },
+      { id: 3, type: 'mc', answer: 'tarjetas de embarque', options: ['boletos sencillos', 'tarjetas de embarque', 'licencias de conducir', 'cheques'], explanation: '"Las tarjetas de embarque" are boarding passes — the documents you need to get on the plane. Valentina checked in online and already has them.' },
+      { id: 4, type: 'text', answer: 'chaleco salvavidas', explanation: '"El chaleco salvavidas" is the life jacket — the safety device stored under airplane seats. Abuela is nervously asking about safety equipment.' },
+      { id: 5, type: 'mc', answer: 'auxiliar de vuelo', options: ['agente de viajes', 'conductor', 'auxiliar de vuelo', 'recepcionista'], explanation: '"El/La auxiliar de vuelo" is the flight attendant. Abuela is asking about the gender of the term — in modern Spanish, "auxiliar de vuelo" is used for all genders.' },
+    ]
+  },
+
+  // ACT 5
+  {
+    actNum: 5,
+    title: "Act 5: La Puerta de Embarque",
+    setting: "Gate B7. The family sits waiting. Their flight has been delayed. Valentina has found the airport Wi-Fi. Papá is hungry.",
+    dialogue: [
+      { type: 'direction', text: "A crackling announcement comes over the loudspeaker." },
+      { type: 'line', speaker: 'ANUNCIO', text: ['Atención, pasajeros del vuelo 342 con destino a Madrid. Hay un ', {item:1}, ' de dos horas debido al mal tiempo.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(groaning) ¡Dos horas! ¿Y ahora qué hacemos? Tengo hambre.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Pues, esperamos aquí en la ', {item:2}, '. No podemos ir muy lejos.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(looking at her phone) Dice aquí que nuestro vuelo es un ', {item:3}, ' a Madrid — sin paradas. Normalmente dura dos horas y media.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(looking out the window at planes) Mira qué máquinas tan grandes. Cuando ', {item:4}, ' pequeña, nunca imaginé que volaría algún día.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Quieren algo de comer? Voy a buscar algo en la tienda. Valentina, dame la ', {item:5}, ' del vuelo para saber en qué asiento está tu abuela.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Aquí tienes, Papá. Abuela está en el asiento 12A — ventana.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(delighted) ¡Ventana! Quiero verlo todo.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'retraso', explanation: '"Un retraso" means "a delay." The announcement informs passengers that their flight has a two-hour delay due to bad weather.' },
+      { id: 2, type: 'mc', answer: 'puerta', options: ['parada', 'puerta', 'salida', 'recepción'], explanation: '"La puerta" is the gate at an airport. Mamá says they need to wait at the gate. "La salida" is departure, "parada" is a bus stop.' },
+      { id: 3, type: 'text', answer: 'vuelo directo', explanation: '"Un vuelo directo" is a direct flight — no stops. Valentina reads that their flight to Madrid goes straight there without layovers.' },
+      { id: 4, type: 'mc', answer: 'era', options: ['fui', 'era', 'estaba', 'fue'], explanation: '"Era" (imperfect of "ser") is correct because Abuela describes a state of being in her past ("when she was young"). The imperfect is used for ongoing states or conditions in the past, not completed events.' },
+      { id: 5, type: 'mc', answer: 'tarjeta de embarque', options: ['tarjeta de embarque', 'licencia de conducir', 'bolso', 'llave'], explanation: '"La tarjeta de embarque" is the boarding pass, which shows the seat assignment. Papá needs it to check where Abuela\'s seat is.' },
+    ]
+  },
+
+  // ACT 6
+  {
+    actNum: 6,
+    title: "Act 6: ¡Despegamos!",
+    setting: "On the plane. Abuela grips her armrests. Valentina films everything. Papá is already asleep. Mamá reads a magazine.",
+    dialogue: [
+      { type: 'direction', text: "The plane taxis to the runway. Engine noise grows louder." },
+      { type: 'line', speaker: 'AUXILIAR', text: ['Señores pasajeros, por favor ajusten sus cinturones de seguridad y coloquen su ', {item:1}, ' debajo del asiento de enfrente.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(gripping armrests with white knuckles) ¡Valentina! ¡Agárrame la mano!'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Abuela, respira. En unos segundos, el avión va a ', {item:2}, '. Es perfectamente normal.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['¡Normal! ¡Nada de esto es normal! Una cosa tan pesada no puede volar, ¡es imposible!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['(without looking up from magazine) Lo dicen los físicos desde 1903, mamá. Puede volar.'] },
+      { type: 'direction', text: "The plane accelerates down the runway and lifts into the air. Abuela lets out a small shriek, then goes silent." },
+      { type: 'line', speaker: 'VALENTINA', text: ['¿Abuela? ¿Estás bien?'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(staring out the window, tears in her eyes) ...Es precioso. Mira, Valentina. El mundo desde aquí es como un ', {item:3}, ' gigante.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(smiling) Sí, abuela. Exactamente como un mapa.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Tenemos el ', {item:4}, ' completo del viaje. Llegamos a Madrid y luego tomamos el tren a Sevilla.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(still gazing out window) ¿Un tren? ¡Ahora el tren me parece perfecto!'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'equipaje de mano', options: ['maleta', 'bolsa', 'equipaje de mano', 'chaleco salvavidas'], explanation: '"El equipaje de mano" is carry-on luggage. Flight attendants instruct passengers to stow carry-on items under the seat in front of them.' },
+      { id: 2, type: 'text', answer: 'despegar', explanation: '"Despegar" means "to take off." Valentina tells Abuela the plane is about to take off, which is normal.' },
+      { id: 3, type: 'mc', answer: 'mapa', options: ['folleto', 'mapa', 'horario', 'boleto'], explanation: '"Un mapa" is a map. Abuela poetically says the world from up in the sky looks like a giant map — fitting since the vocab word "mapa" (map) is part of Unit 6.' },
+      { id: 4, type: 'text', answer: 'horario', explanation: '"El horario" is the schedule/itinerary. Mamá has the complete travel schedule: they arrive in Madrid and then take the train to Sevilla.' },
+    ]
+  },
+
+  // ACT 7
+  {
+    actNum: 7,
+    title: "Act 7: En el Tren — El Andén",
+    setting: "Madrid's Atocha train station. The family navigates the enormous station with their luggage. Abuela is now the most enthusiastic one.",
+    dialogue: [
+      { type: 'direction', text: "Abuela marches ahead confidently. The rest of the family struggles to keep up." },
+      { type: 'line', speaker: 'ABUELA', text: ['¡Por aquí! El ', {item:1}, ' número cuatro — ahí es donde sale el tren a Sevilla.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(panting) ¿Cómo sabes dónde está el andén, mamá?'] },
+      { type: 'line', speaker: 'ABUELA', text: ['¡Porque leo el cartel! Dice: Sevilla — ', {item:2}, ' 4. ¿Ves? No todo en la vida está en el teléfono.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(checking tickets) Nuestro ', {item:3}, ' dice que tenemos asientos reservados en el vagón cinco.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¿Compraste boletos de ida y vuelta, Valentina, o solo de ida?'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['¡Claro que compré ', {item:4}, '! ¿Qué crees, que pensaba quedarnos en Sevilla para siempre?'] },
+      { type: 'direction', text: "Papá trips on his suitcase. A station employee rushes over to help." },
+      { type: 'line', speaker: 'EMPLEADO', text: ['¿Está bien, señor? ¿Necesita ayuda con su equipaje?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Sí, por favor. ¿Puede indicarnos dónde está el ', {item:5}, ' número cinco?'] },
+      { type: 'line', speaker: 'EMPLEADO', text: ['Por supuesto. Es por allá — la tercera puerta a la derecha.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'andén', explanation: '"El andén" is the train platform — where you wait and board the train. Abuela confidently leads the family to platform 4.' },
+      { id: 2, type: 'mc', answer: 'Andén', options: ['Vagón', 'Andén', 'Pasillo', 'Vía'], explanation: '"El andén" (platform) is where you board the train. "El vagón" is the train car, "el pasillo" is the aisle, "la vía" is the track.' },
+      { id: 3, type: 'mc', answer: 'boleto', options: ['folleto', 'horario', 'boleto', 'cheque'], explanation: '"El boleto" is the ticket. Valentina checks their tickets to find the reserved seats and train car number.' },
+      { id: 4, type: 'text', answer: 'boletos de ida y vuelta', explanation: '"Los boletos de ida y vuelta" are round-trip tickets. Valentina bought round-trip tickets, which makes sense since they need to return home.' },
+      { id: 5, type: 'mc', answer: 'vagón', options: ['andén', 'vía', 'vagón', 'pasillo'], explanation: '"El vagón" is the train car. Papá asks the employee where to find train car number five, where their seats are.' },
+    ]
+  },
+
+  // ACT 8
+  {
+    actNum: 8,
+    title: "Act 8: El Hotel — La Llegada",
+    setting: "A charming hotel in Sevilla. The family approaches the reception desk. It is late. Everyone is exhausted.",
+    dialogue: [
+      { type: 'direction', text: "The family shuffles into the hotel lobby. Papá drops his suitcase with a loud thud." },
+      { type: 'line', speaker: 'RECEPCIONISTA', text: ['¡Buenas noches! Bienvenidos al Hotel Sol de Andalucía. ¿Son ustedes los ', {item:1}, '?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Sí, somos la familia Rodríguez. Tenemos dos ', {item:2}, ': una doble y una sencilla para la abuela.'] },
+      { type: 'line', speaker: 'RECEPCIONISTA', text: ['Perfecto. Aquí tienen sus ', {item:3}, '. Las habitaciones están en el tercer piso.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(inspecting the key) ¡Una llave de verdad! No una tarjeta electrónica. ¡Me gusta este hotel!'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Abuela, la mayoría de los hoteles usa tarjetas ahora. Esto es... vintage.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Hay toallas en la habitación, o tenemos que pedirlas?'] },
+      { type: 'line', speaker: 'RECEPCIONISTA', text: ['Todo está incluido, señor. Toallas, almohadas, y ', {item:4}, ' para la ropa en el armario. Si necesitan algo más, llamen a la ', {item:5}, '.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(to Valentina) ¿Ves? Servicio de verdad. No como esos hoteles modernos donde lo haces todo solo en una pantalla.'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'huéspedes', options: ['pasajeros', 'viajeros', 'huéspedes', 'conductores'], explanation: '"Los huéspedes" are hotel guests. The receptionist asks if they are the expected guests (huéspedes). "Pasajeros" are passengers (on transport), "viajeros" are travelers in general.' },
+      { id: 2, type: 'text', answer: 'habitaciones', explanation: '"Las habitaciones" are hotel rooms. Mamá says they have two rooms reserved: one double and one single for Grandma.' },
+      { id: 3, type: 'mc', answer: 'llaves', options: ['tarjetas de embarque', 'llaves', 'facturas', 'cheques'], explanation: '"Las llaves" are the keys. The receptionist hands over the room keys. "Tarjetas de embarque" are boarding passes (used at airports), "facturas" are bills.' },
+      { id: 4, type: 'text', answer: 'perchas', explanation: '"Las perchas" are hangers — for hanging clothes in the closet. The receptionist confirms that hangers are provided in the room.' },
+      { id: 5, type: 'mc', answer: 'recepción', options: ['gasolinera', 'autoescuela', 'recepción', 'agencia de viajes'], explanation: '"La recepción" is the front desk/reception of a hotel. If they need anything, they should call the front desk.' },
+    ]
+  },
+
+  // ACT 9
+  {
+    actNum: 9,
+    title: "Act 9: La Habitación",
+    setting: "The hotel room. Mamá immediately inspects everything. Papá flops on the bed. Valentina tries the TV remote.",
+    dialogue: [
+      { type: 'direction', text: "Mamá runs her finger along every surface checking for dust. She finds none. She looks almost disappointed." },
+      { type: 'line', speaker: 'PAPÁ', text: ['(from the bed) Esta ', {item:1}, ' es perfectamente cómoda. Podría quedarme aquí una semana.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Ernesto, es una ', {item:2}, '. Tiene dos camas. La sencilla de abuela tiene una sola cama, que es perfecta para ella.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['El WiFi funciona. ¡Perfecto! (pauses) Mamá, ¿dónde están las ', {item:3}, '? Quiero ducharme.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['En el baño, como en todos los hoteles, Valentina.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(from the bathroom) ¡Hay ', {item:4}, ' para poner la ropa! ¡Qué organizado!'] },
+      { type: 'direction', text: "Someone knocks on the door. It's the receptionist with a paper." },
+      { type: 'line', speaker: 'RECEPCIONISTA', text: ['Señor Rodríguez, aquí le traigo la ', {item:5}, ' preliminar para que vea los cargos.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(paling) Ya empieza...'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'almohada', options: ['almohada', 'toalla', 'percha', 'llave'], explanation: '"La almohada" is the pillow. Papá says the pillow is perfectly comfortable. (He is lying on the bed and would be resting his head on the pillow.)' },
+      { id: 2, type: 'text', answer: 'habitación doble', explanation: '"La habitación doble" is a double room — a hotel room with two beds. Mamá clarifies that their room has two beds, unlike Abuela\'s single room.' },
+      { id: 3, type: 'mc', answer: 'toallas', options: ['almohadas', 'perchas', 'toallas', 'llaves'], explanation: '"Las toallas" are towels. Valentina wants to shower and asks where the towels are — a natural question when preparing to bathe.' },
+      { id: 4, type: 'text', answer: 'perchas', explanation: '"Las perchas" are hangers. Valentina is pleased to find hangers in the bathroom/closet area for organizing clothes.' },
+      { id: 5, type: 'mc', answer: 'factura', options: ['tarjeta de embarque', 'cheque', 'factura', 'boleto'], explanation: '"La factura" is the bill/invoice. The receptionist brings a preliminary bill so the guest can review the charges.' },
+    ]
+  },
+
+  // ACT 10
+  {
+    actNum: 10,
+    title: "Act 10: Explorando Sevilla",
+    setting: "The streets of Sevilla. The family wanders through the old city. They are slightly lost but pretending not to be.",
+    dialogue: [
+      { type: 'direction', text: "Papá holds a paper map upside down. Valentina is trying not to say anything." },
+      { type: 'line', speaker: 'PAPÁ', text: ['Según el ', {item:1}, ', la catedral está... por aquí.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(gently) Papá, el mapa está al revés.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(flipping map) Ya lo sabía. Solo estaba... verificando.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['Cuando ', {item:2}, ' aquí de joven, los mapas no existían. Simplemente preguntabas a la gente.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¿Visitaste Sevilla de joven, mamá?'] },
+      { type: 'line', speaker: 'ABUELA', text: ['Sí, ', {item:3}, ' aquí con tu abuelo en 1965. Fue nuestro viaje de bodas. Él escogió este lugar porque amaba la arquitectura.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(surprised) ¿En serio? Abuela, nunca nos contaste eso.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['Nadie me preguntó. (smiling) Tu abuelo era muy romántico. El primer día que llegamos, me ', {item:4}, ' flores y me llevó a cenar en el río.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Qué bonito... (to Papá) ¿Tú cuándo me compraste flores por última vez?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(sweating) Mira, ¡la catedral! ¡La encontré con el mapa!'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Sí, papá. El ', {item:5}, ' de viajero que llevas funciona perfectamente.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'mapa', explanation: '"El mapa" is the map. Papá consults the paper map (upside down) to find the cathedral — classic travel vocabulary in action.' },
+      { id: 2, type: 'mc', answer: 'vivía', options: ['viví', 'vivía', 'vivo', 'vivió'], explanation: '"Vivía" (imperfect) is correct because Abuela describes a past state or condition ("when I used to live/was living here"). The imperfect expresses ongoing past conditions, while "viví" (preterite) would suggest a completed, bounded time period.' },
+      { id: 3, type: 'text', answer: 'viajé', explanation: '"Viajé" (preterite) is correct because Abuela is describing a specific, completed trip she made with her husband in 1965 — a single event with a clear time reference ("en 1965").' },
+      { id: 4, type: 'mc', answer: 'compró', options: ['compraba', 'compró', 'compraba', 'comprará'], explanation: '"Compró" (preterite) is correct because it describes a specific completed action: on that first day, he bought her flowers. The preterite is used for specific completed events in the past.' },
+      { id: 5, type: 'mc', answer: 'instinto', options: ['mapa', 'folleto', 'instinto', 'horario'], explanation: 'Valentina sarcastically says the "instinto de viajero" (traveler\'s instinct) Papá carries works perfectly — implying he found the cathedral by luck, not the map. "El/la viajero(a)" is the Unit 6 vocabulary word for "traveler."' },
+    ]
+  },
+
+  // ACT 11
+  {
+    actNum: 11,
+    title: "Act 11: El Banco",
+    setting: "A bank in Sevilla. Papá realizes he has no local cash. Everyone waits as he tries to figure out modern Spanish banking.",
+    dialogue: [
+      { type: 'direction', text: "Papá stands in front of an ATM machine, pressing buttons frantically." },
+      { type: 'line', speaker: 'VALENTINA', text: ['Papá, ¿qué haces? Usa el ', {item:1}, ' para sacar dinero. Es más fácil.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¡Eso intento! ¡La máquina no acepta mi tarjeta!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¿Necesitas ', {item:2}, ' euros? Yo tengo algunos que cambié antes de salir.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Tú cambiaste dinero? ¿Cuándo?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Fui al banco la semana pasada. Uno siempre debe ', {item:3}, ' antes de un viaje internacional.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Mamá tiene razón, Papá. También puedes pagar con ', {item:4}, ', pero no todos los sitios lo aceptan aquí.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(finally getting cash from ATM) ¡Lo logré! ¡Pude ', {item:5}, ' al fin!'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(dryly) Felicidades, Ernesto. El hombre venció a la máquina.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'cajero automático', explanation: '"El cajero automático" is the ATM (automated teller machine). Valentina tells her father to use the ATM to get cash — it\'s easier.' },
+      { id: 2, type: 'mc', answer: 'cambiar', options: ['sacar', 'cambiar', 'poner', 'hacer'], explanation: '"Cambiar dinero" means "to change/exchange money." Mamá asks if he needs to exchange euros — but she already did it before the trip. "Sacar dinero" means to withdraw money.' },
+      { id: 3, type: 'text', answer: 'cambiar dinero', explanation: '"Cambiar dinero" means "to exchange money." Mamá explains she went to the bank to exchange money last week — good travel preparation.' },
+      { id: 4, type: 'mc', answer: 'cheque', options: ['cheque', 'boleto', 'llave', 'folleto'], explanation: '"El cheque" is a check. Valentina mentions you can also pay by check, though not everywhere accepts them. In travel contexts, this refers to traveler\'s checks or bank checks.' },
+      { id: 5, type: 'text', answer: 'sacar dinero', explanation: '"Sacar dinero" means "to withdraw money." Papá finally succeeded in withdrawing money from the ATM after struggling with it.' },
+    ]
+  },
+
+  // ACT 12
+  {
+    actNum: 12,
+    title: "Act 12: El Coche Alquilado",
+    setting: "A car rental parking lot. The family has rented a small European car. Papá is very nervous. The car is a manual transmission.",
+    dialogue: [
+      { type: 'direction', text: "Papá sits in the driver's seat sweating. The steering wheel is on the left. Everything feels wrong to him." },
+      { type: 'line', speaker: 'EMPLEADO', text: ['¿Necesita instrucciones, señor? Este modelo tiene el ', {item:1}, ' a la izquierda, como todos los coches europeos.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['No, no. Todo bien. (whispers to Mamá) ¿Cómo se usa el ', {item:2}, '? ¡Este coche es manual!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['(alarmed) ¿Manual? Ernesto, tú no sabes manejar un coche manual.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(from backseat) Papá, el ', {item:3}, ' es el pedal de la izquierda. Pisas el embrague, cambias el velocímetro... el cambio de marchas...'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Y el ', {item:4}, '? ¿Dónde está el freno?'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['El pedal del medio, Papá.'] },
+      { type: 'direction', text: "Papá starts the car. It lurches forward and dies immediately. The employee covers his face." },
+      { type: 'line', speaker: 'ABUELA', text: ['(calmly) Ernesto. Cuando tenías veinte años, ', {item:5}, ' un coche manual todos los días. Recuerda.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(surprised) Tienes razón, mamá. (deep breath) Tenía veinte años... y lo hacía sin pensar.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'volante', explanation: '"El volante" is the steering wheel. The employee confirms the steering wheel is on the left side, as in all European cars.' },
+      { id: 2, type: 'mc', answer: 'embrague', options: ['acelerador', 'embrague', 'faro', 'tanque de gasolina'], explanation: '"El embrague" is the clutch — essential for driving a manual transmission car. Papá whispers that he doesn\'t know how to use the clutch.' },
+      { id: 3, type: 'text', answer: 'embrague', explanation: '"El embrague" is the clutch — the left pedal in a manual car. Valentina explains that you press the clutch pedal when shifting gears.' },
+      { id: 4, type: 'mc', answer: 'freno', options: ['acelerador', 'embrague', 'freno', 'motor'], explanation: '"El freno" is the brake — the middle pedal in a manual car. Papá nervously asks where the brake is.' },
+      { id: 5, type: 'mc', answer: 'manejabas', options: ['manejaste', 'manejabas', 'manejas', 'manejarás'], explanation: '"Manejabas" (imperfect) is correct — Abuela says that when Papá was twenty, he used to drive a manual car every day. The imperfect expresses a repeated past habit, not a single completed event.' },
+    ]
+  },
+
+  // ACT 13
+  {
+    actNum: 13,
+    title: "Act 13: Una Multa",
+    setting: "On a Spanish highway. Papá is now confidently driving — perhaps too confidently. A police siren sounds behind them.",
+    dialogue: [
+      { type: 'direction', text: "Papá grins. The engine hums. Then: WEEEOOO. Red and blue lights flash in the rearview mirror." },
+      { type: 'line', speaker: 'PAPÁ', text: ['(panicking) ¿Qué? ¿Por qué? ¡Yo no hice nada!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Ernesto, ibas a 140 kilómetros por hora. El límite es 120.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(filming from backseat) Esto va a estar buenísimo en mis stories.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['(turning around sharply) ¡Valentina, guarda ese teléfono!'] },
+      { type: 'line', speaker: 'POLICÍA', text: ['Buenos días. ¿Me permite su ', {item:1}, ' de conducir y el registro del vehículo?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(nervous) Sí, claro. Un momento... (rummaging) Aquí está mi licencia...'] },
+      { type: 'line', speaker: 'POLICÍA', text: ['Señor, estaba usted excediendo el límite de velocidad. Voy a tener que ', {item:2}, '.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Una multa? Oficial, es que no sabía que... bueno, sí sabía. Lo siento mucho.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(to Valentina, quietly) Cuando tu papá ', {item:3}, ' joven, tampoco respetaba los límites de velocidad.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(whispering back) Abuela, los errores son hereditarios, claramente.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['De ahora en adelante, yo manejo. Dame el ', {item:4}, '.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'licencia', explanation: '"La licencia de conducir" is the driver\'s license. The police officer asks for Papá\'s driver\'s license and vehicle registration.' },
+      { id: 2, type: 'mc', answer: 'ponerle una multa', options: ['manejar más rápido', 'ponerle una multa', 'cambiar la llanta', 'revisar el motor'], explanation: '"Poner una multa" means "to give a ticket/fine." The officer says he must give Papá a ticket for speeding. This is a direct Unit 6 vocabulary expression.' },
+      { id: 3, type: 'mc', answer: 'era', options: ['fue', 'era', 'estuvo', 'estaba'], explanation: '"Era" (imperfect of ser) is used for describing a state in the past — "when your father was young." It describes an ongoing past condition, not a completed event. "Fue" could work for a single completed event, but "era joven" (was young) is a state described with ser in the imperfect.' },
+      { id: 4, type: 'text', answer: 'volante', explanation: '"El volante" is the steering wheel. Mamá takes control and demands the wheel — she\'s going to drive from now on.' },
+    ]
+  },
+
+  // ACT 14
+  {
+    actNum: 14,
+    title: "Act 14: La Gasolinera",
+    setting: "A Spanish gas station. Mamá is now driving. The car is almost out of gas. They need to figure out how everything works.",
+    dialogue: [
+      { type: 'direction', text: "Mamá pulls into the gas station smoothly. Everyone breathes again." },
+      { type: 'line', speaker: 'MAMÁ', text: ['Necesitamos llenar el ', {item:1}, ' de gasolina. Ernesto, baja y pregunta cómo funciona.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(offended) Yo sé cómo llenar un tanque.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¿Sí? ¿Y sí sabes manejar a 140 sin consecuencias?'] },
+      { type: 'direction', text: "Papá gets out silently. He approaches the pump. Then stands there confused." },
+      { type: 'line', speaker: 'PAPÁ', text: ['(returning to the window) ¿En cuál tipo pongo? ¿Gasolina regular o diesel?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['El empleado de la ', {item:2}, ' te puede decir. ¡Ve a preguntar!'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Papá, el contrato de alquiler dice "gasolina sin plomo." Aquí está la información.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(brightening up) Muy bien. (to the gas station attendant) Disculpe, ¿puede usted ', {item:3}, ' el coche? Necesitamos gasolina sin plomo.'] },
+      { type: 'line', speaker: 'EMPLEADO', text: ['Por supuesto, señor. ¿Quiere también revisar el aceite y las ', {item:4}, '?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Sí, por favor. Y también revise los ', {item:5}, ' — vamos por carretera y quiero asegurarme de que todo esté bien.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'tanque de gasolina', explanation: '"El tanque de gasolina" is the gas tank. Mamá tells the family they need to fill up the gas tank.' },
+      { id: 2, type: 'mc', answer: 'gasolinera', options: ['agencia de viajes', 'autoescuela', 'gasolinera', 'banco'], explanation: '"La gasolinera" is the gas station. Mamá tells Papá to go ask the gas station employee which fuel type to use.' },
+      { id: 3, type: 'mc', answer: 'llenar', options: ['arrancar', 'estacionar', 'llenar', 'manejar'], explanation: '"Llenar" means to fill (up). Papá asks the attendant to fill the car with unleaded gasoline. "Arrancar" = to start a car, "estacionar" = to park.' },
+      { id: 4, type: 'text', answer: 'ruedas', explanation: '"Las ruedas" are the tires/wheels. The gas station employee offers to also check the oil and the tires.' },
+      { id: 5, type: 'mc', answer: 'faros', options: ['embragues', 'faros', 'volantes', 'cinturones'], explanation: '"Los faros" are the headlights. Papá asks the employee to also check the headlights since they\'re driving on the highway.' },
+    ]
+  },
+
+  // ACT 15
+  {
+    actNum: 15,
+    title: "Act 15: El Vuelo de Regreso — El Retraso",
+    setting: "The airport again. The family waits for their return flight to the USA. There is, of course, another delay.",
+    dialogue: [
+      { type: 'direction', text: "The family sits at the gate. A familiar crackling announcement begins." },
+      { type: 'line', speaker: 'ANUNCIO', text: ['Señores pasajeros, lamentamos informarles que el vuelo 891 con destino a Miami tiene un ', {item:1}, ' de tres horas.'] },
+      { type: 'line', speaker: 'TODOS', text: ['(in unison) ¡NO!'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(delighted) ¡Tres horas más en España! ¡Qué maravilla!'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Voy a ', {item:2}, ' algo de comer y un café. ¿Alguien quiere algo?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Sí, tráeme lo que sea. Y pregunta cuándo ', {item:3}, ' nuestro vuelo. El monitor no tiene información clara.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¿Dónde están nuestras ', {item:4}, '? Tengo que tenerlas listas cuando anuncien la salida.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Mamá, yo las tengo guardadas en el teléfono. No te preocupes.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(watching planes out the window) Mira. Ese avión acaba de ', {item:5}, '. ¡Qué momento tan emocionante!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Sí, mamá. Para ese pasajero. Para nosotros, todavía faltan tres horas.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'retraso', explanation: '"Un retraso" is a delay. The announcement sadly informs passengers their flight has a three-hour delay — a recurring theme for the Rodríguez family!' },
+      { id: 2, type: 'mc', answer: 'buscar', options: ['volver', 'salir', 'buscar', 'llegar'], explanation: '"Buscar" means to look for / to get. Valentina says she\'s going to go get something to eat and a coffee. "Volver" = to come back, "salir" = to leave, "llegar" = to arrive.' },
+      { id: 3, type: 'mc', answer: 'sale', options: ['llega', 'sale', 'despega', 'aterriza'], explanation: '"Sale" (from "salir") means departs. Papá asks what time their flight departs. "La salida" (departure) is a key Unit 6 vocabulary word.' },
+      { id: 4, type: 'text', answer: 'tarjetas de embarque', explanation: '"Las tarjetas de embarque" are boarding passes. Mamá needs to have the boarding passes ready when the departure is announced.' },
+      { id: 5, type: 'mc', answer: 'aterrizar', options: ['despegar', 'aterrizar', 'hacer escala', 'facturar'], explanation: '"Aterrizar" means to land. Abuela watches a plane land and finds it exciting. The opposite is "despegar" (to take off).' },
+    ]
+  },
+
+  // ACT 16
+  {
+    actNum: 16,
+    title: "Act 16: Primera Clase... ¿o No?",
+    setting: "On the return flight. There has been a mix-up with seats. Valentina accidentally got upgraded. The rest of the family did not.",
+    dialogue: [
+      { type: 'direction', text: "The family boards. Valentina turns left toward first class. The family turns right toward coach." },
+      { type: 'line', speaker: 'VALENTINA', text: ['(whispering) Eh... mi tarjeta dice ', {item:1}, '. Asiento 3A.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Qué? Pero nosotros compramos ', {item:2}, '... para todos.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['No sé cómo pasó, Papá. Yo también compré ', {item:3}, ' para mi vuelo de ida con mis ahorros.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Valentina, puedes cambiar el asiento con tu abuela. Ella se merece la comodidad.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(dramatically) Mamá...'] },
+      { type: 'line', speaker: 'ABUELA', text: ['No, no. Yo estoy bien en ', {item:4}, '. No necesito lujos. Valentina, ve tú.'] },
+      { type: 'line', speaker: 'AUXILIAR', text: ['Disculpe, ¿hay algún problema? Su ', {item:5}, ' muestra que usted está en 3A, primera clase.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(sighing with fake guilt) Bueno... si es lo que dice el sistema...'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Esa chica heredó el talento para el drama de su abuela.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(proudly) De la mejor.'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'primera clase', explanation: '"La primera clase" is first class on a plane or train. Valentina\'s boarding pass shows she has been upgraded to first class seat 3A.' },
+      { id: 2, type: 'mc', answer: 'clase turista', options: ['primera clase', 'clase turista', 'vuelo directo', 'boleto sencillo'], explanation: '"La clase turista" is coach/economy class. The family bought economy class tickets — not first class — but Valentina got upgraded.' },
+      { id: 3, type: 'mc', answer: 'boleto sencillo', options: ['boleto de ida y vuelta', 'boleto sencillo', 'primera clase', 'clase turista'], explanation: '"Un boleto sencillo" is a one-way ticket. Valentina clarifies that for her outbound flight she bought a one-way ticket with her own savings.' },
+      { id: 4, type: 'text', answer: 'clase turista', explanation: '"La clase turista" is economy/coach. Abuela insists she is fine in economy class and doesn\'t need luxury.' },
+      { id: 5, type: 'mc', answer: 'tarjeta de embarque', options: ['licencia', 'factura', 'tarjeta de embarque', 'cheque'], explanation: '"La tarjeta de embarque" is the boarding pass. The flight attendant checks the boarding pass, which shows Valentina is assigned to seat 3A in first class.' },
+    ]
+  },
+
+  // ACT 17
+  {
+    actNum: 17,
+    title: "Act 17: ¡Hacemos Escala!",
+    setting: "Unexpected: the flight has to make a stop in Lisbon. Nobody planned for this. The family has 45 minutes to get to their connecting gate.",
+    dialogue: [
+      { type: 'direction', text: "The pilot's voice comes over the intercom." },
+      { type: 'line', speaker: 'PILOTO', text: ['Señores pasajeros, debido a condiciones técnicas, vamos a ', {item:1}, ' en Lisboa. La parada durará aproximadamente 45 minutos.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Hacer escala? ¡Pero este era un vuelo directo!'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['(reading her phone) Era un vuelo directo. Ahora no lo es. Tenemos que ', {item:2}, ' al siguiente vuelo.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['¡Lisboa! Siempre quise visitar Portugal. ¿Tenemos tiempo para salir del aeropuerto?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Cuarenta y cinco minutos, mamá. No.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(disappointed) Entonces por lo menos compro algo en la tienda. Portugal tiene pasteles famosos.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(returning from first class, pastry in hand) ¿Saben lo que dan de comer en primera clase? ¡Fue increíble!'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Valentina, no nos cuentes. La ', {item:3}, ' en primera clase era diferente a la nuestra, imagino.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Mucho. Pero en fin, estamos juntos en lo importante. (pause) ¿Y dónde ', {item:4}, ' nuestro próximo avión?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['La ', {item:5}, ' B22. Tenemos exactamente veinte minutos. ¡CORRAN!'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'hacer escala', explanation: '"Hacer escala" means to make a stopover. The pilot announces an unexpected stop in Lisbon — turning their direct flight into one with a layover.' },
+      { id: 2, type: 'mc', answer: 'llegar', options: ['volver', 'llegar', 'salir', 'ir'], explanation: '"Llegar" means to arrive. Mamá says they need to get/arrive at the next flight in time. "Llegar" is one of the key verbs in Unit 6.' },
+      { id: 3, type: 'mc', answer: 'comida', options: ['tarifa', 'comida', 'llegada', 'salida'], explanation: 'Papá assumes the food ("la comida") in first class was different from what they had in economy. This connects logically — Valentina returned with a pastry, implying excellent first class food.' },
+      { id: 4, type: 'text', answer: 'sale', explanation: '"Sale" (from "salir") means departs. Valentina asks from which gate their next plane departs. "La salida" (departure) is key Unit 6 vocabulary.' },
+      { id: 5, type: 'mc', answer: 'puerta', options: ['andén', 'vía', 'puerta', 'parada'], explanation: '"La puerta" is the gate (at an airport). Mamá announces their gate is B22 and they must run — they only have 20 minutes.' },
+    ]
+  },
+
+  // ACT 18
+  {
+    actNum: 18,
+    title: "Act 18: La Llegada a Casa",
+    setting: "Miami International Airport. The family lands after the longest journey of their lives. They look disheveled but happy.",
+    dialogue: [
+      { type: 'direction', text: "The plane touches down smoothly. The family erupts in quiet, exhausted applause." },
+      { type: 'line', speaker: 'ABUELA', text: ['(clapping) ¡Aterrizamos! ¡Gracias a Dios! Aunque... (quietly) ya extraño España.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Hay que pasar por inmigración y luego recoger el equipaje. La ', {item:1}, ' oficial fue hace veinte minutos.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Ya, ya. Primero el pasillo... ¿cuál era nuestro número de ', {item:2}, '?'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['El número ocho. Las maletas salen por la correa número ocho.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(to Mamá) ¿Cuándo ', {item:3}, ' a España? Quiero volver el año que viene.'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['¡Mamá! Acabamos de ', {item:4}, '. Dame al menos una semana.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['Yo ya busqué vuelos para el verano que viene. Hay buenas ', {item:5}, ' si reservas con tiempo.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['¿Otra vez? ¡El verano que viene no pienso manejar!'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(smiling) Esta vez, yo manejo.'] },
+      { type: 'line', speaker: 'TODOS', text: ['¡NO!'] },
+    ],
+    items: [
+      { id: 1, type: 'text', answer: 'llegada', explanation: '"La llegada" means the arrival. The official arrival of the plane was 20 minutes ago. This is a key Unit 6 vocabulary word.' },
+      { id: 2, type: 'mc', answer: 'vuelo', options: ['andén', 'pasillo', 'vuelo', 'vagón'], explanation: '"El vuelo" is the flight. Valentina asks for their flight number to find the correct baggage carousel. "El pasillo" is the aisle.' },
+      { id: 3, type: 'mc', answer: 'volvemos', options: ['volvíamos', 'volvimos', 'volvemos', 'volvió'], explanation: '"Volvemos" (present/future present tense) is used here because Abuela is asking about returning in the future — "when do we go back?" — expressing a near-future plan. "Volver" is a key Unit 6 verb.' },
+      { id: 4, type: 'text', answer: 'llegar', explanation: '"Llegar" means to arrive. Mamá says they just arrived — she needs at least a week before thinking about another trip.' },
+      { id: 5, type: 'mc', answer: 'tarifas', options: ['folletos', 'tarifas', 'horarios', 'retrasos'], explanation: '"Las tarifas" are prices/fares. Valentina found good prices/fares for flights if you book ahead of time. "Tarifa" = price is a Unit 6 vocabulary word.' },
+    ]
+  },
+
+  // ACT 19
+  {
+    actNum: 19,
+    title: "Act 19: De Regreso en Casa",
+    setting: "The Rodríguez living room. Same as Act 1. But everything feels different. The family unpacks and shares memories.",
+    dialogue: [
+      { type: 'direction', text: "Mamá places a small flamenco fan and a magnet on the refrigerator. Papá sinks into his chair. Abuela holds a photograph." },
+      { type: 'line', speaker: 'VALENTINA', text: ['(flopping on couch) Ese fue el mejor viaje de mi vida. Y el más caótico.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Caótico... esa es una palabra suave. Perdí el pasaporte, ', {item:1}, ' una multa, casi pierdo el avión...'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Y sin embargo, aquí estamos. Juntos. Con muchos recuerdos.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(looking at photograph) Mira, Valentina. Esta foto la ', {item:2}, ' en el mismo lugar donde tu abuelo y yo fuimos en 1965.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(softly) ¿En serio, abuela? Eso es muy especial.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['Cuando era joven, ', {item:3}, ' que algún día volvería con mi familia. Y lo hice. A veces los sueños se cumplen lento, pero se cumplen.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(quietly) Oye, mamá. Gracias por... por animarnos. Sin ti, este viaje no ', {item:4}, ' lo mismo.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['(patting his hand) Ay, Ernesto. Eres un buen hombre. Solo un poco malo manejando.'] },
+      { type: 'line', speaker: 'TODOS', text: ['(laughing)'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Ya fui a la ', {item:5}, ' de viajes online. Hay paquetes muy buenos para Italia el próximo año.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(without hesitation) ¡SÍ!'] },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'recibí', options: ['recibía', 'recibí', 'recibo', 'recibiré'], explanation: '"Recibí" (preterite) is correct — Papá lists specific completed events from the trip: he received a fine (multa). The preterite is used for a single, completed past action.' },
+      { id: 2, type: 'text', answer: 'tomé', explanation: '"Tomé" (preterite of "tomar") means "I took." Abuela says she took this photo in the same spot where she and Grandpa went in 1965 — a specific completed action.' },
+      { id: 3, type: 'mc', answer: 'soñaba', options: ['soñé', 'soñaba', 'sueño', 'soñaré'], explanation: '"Soñaba" (imperfect) is correct — Abuela is describing a repeated dream or ongoing wish from her youth ("I used to dream that someday I would return"). The imperfect expresses ongoing states or repeated feelings in the past.' },
+      { id: 4, type: 'text', answer: 'hubiera sido', explanation: '"Hubiera sido" (past subjunctive/conditional) expresses what the trip would NOT have been without Abuela. Papá says the trip wouldn\'t have been the same without her — expressing a hypothetical past condition.' },
+      { id: 5, type: 'mc', answer: 'agencia', options: ['agencia', 'gasolinera', 'autoescuela', 'recepción'], explanation: '"La agencia de viajes" is the travel agency — where the adventure began in Act 1! Mamá has already gone back to look at travel packages, bringing the story full circle.' },
+    ]
+  },
+
+  // ACT 20
+  {
+    actNum: 20,
+    title: "Act 20: El Epílogo — ¡Qué Viaje!",
+    setting: "The same living room, three months later. A new set of brochures covers the table. History is about to repeat itself.",
+    dialogue: [
+      { type: 'direction', text: "The family sits at the table. New brochures. New excitement. Same chaos waiting to happen." },
+      { type: 'line', speaker: 'MAMÁ', text: ['¡Familia! Ya compré los ', {item:1}, ' para Italia. Salimos en junio.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['Espera — ¿son ', {item:2}, ' o solo de ida?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['De ida y vuelta, claro. Aprendí la lección de Valentina.'] },
+      { type: 'line', speaker: 'VALENTINA', text: ['(insulted) ¡Yo compré de ida y vuelta para el de regreso! El otro fue un experimento.'] },
+      { type: 'line', speaker: 'ABUELA', text: ['¿Italia? ¡Maravilloso! Necesito comprar una ', {item:3}, ' nueva. La de España quedó destrozada.'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(to Mamá) ¿Fuiste a la ', {item:4}, ' de viajes, o lo hiciste sola por internet?'] },
+      { type: 'line', speaker: 'MAMÁ', text: ['Fui en persona. El agente fue muy amable y me dio un ', {item:5}, ' con todo incluido.'] },
+      { type: 'direction', text: "Papá sighs. Abuela beams. Valentina opens her phone to start researching Italian fashion." },
+      { type: 'line', speaker: 'ABUELA', text: ['¡La vida es un viaje, y nosotros somos muy buenos viajeros!'] },
+      { type: 'line', speaker: 'PAPÁ', text: ['(quietly, to audience) Somos los peores viajeros del mundo. Y aun así... no cambiaría nada.'] },
+      { type: 'direction', text: "FIN — ¡Qué Viaje!" },
+    ],
+    items: [
+      { id: 1, type: 'mc', answer: 'boletos', options: ['folletos', 'boletos', 'cheques', 'mapas'], explanation: '"Los boletos" are tickets. Mamá announces she already bought the tickets for Italy. "Folletos" are brochures, "cheques" are checks.' },
+      { id: 2, type: 'text', answer: 'boletos de ida y vuelta', explanation: '"Los boletos de ida y vuelta" are round-trip tickets. Papá wants to confirm whether they\'re round-trip or one-way — he learned from experience.' },
+      { id: 3, type: 'mc', answer: 'maleta', options: ['llave', 'toalla', 'maleta', 'percha'], explanation: '"La maleta" is the suitcase. Abuela says she needs a new suitcase — her Spain one was destroyed from the trip!' },
+      { id: 4, type: 'text', answer: 'agencia', explanation: '"La agencia de viajes" is the travel agency. The play ends where it began — Mamá going to the travel agency, bringing the story full circle.' },
+      { id: 5, type: 'mc', answer: 'folleto', options: ['mapa', 'cheque', 'folleto', 'horario'], explanation: '"Un folleto" is a brochure. The agent gave Mamá a brochure with all the trip details included — just like in Act 1, completing the circular structure of the play.' },
+    ]
+  }
+];
+
+// ============================================================
+// UNIT 6 — DE VIAJE VOCABULARY POOL
+// Used to generate 4 random distractors for word-bank items
+// ============================================================
+const unit6Pool = [
+  // Transportation & airport
+  'el aeropuerto', 'el avión', 'el vuelo', 'la aerolínea', 'el piloto',
+  'la azafata', 'el auxiliar de vuelo', 'la tarjeta de embarque', 'el pasaporte',
+  'el equipaje', 'el equipaje de mano', 'la maleta', 'la mochila', 'la bolsa',
+  'facturar el equipaje', 'hacer escala', 'el vuelo directo', 'el retraso',
+  'despegar', 'aterrizar', 'la salida', 'la llegada', 'la puerta', 'la escala',
+  'el chaleco salvavidas', 'primera clase', 'clase turista',
+  // Train & bus
+  'el tren', 'el autobús', 'la estación', 'el andén', 'el vagón', 'la vía',
+  'el pasillo', 'la parada', 'el boleto', 'boleto sencillo', 'boletos de ida y vuelta',
+  // Hotel
+  'el hotel', 'la habitación', 'la habitación doble', 'la habitación sencilla',
+  'la recepción', 'el recepcionista', 'el huésped', 'la llave', 'la toalla',
+  'la almohada', 'la percha', 'la factura',
+  // Car & road
+  'el coche', 'manejar', 'el volante', 'el freno', 'el acelerador', 'el embrague',
+  'el faro', 'la rueda', 'la llanta', 'el motor', 'la gasolinera', 'el tanque de gasolina',
+  'llenar', 'estacionar', 'arrancar', 'la autoescuela', 'la licencia de conducir',
+  'ponerle una multa', 'la multa',
+  // Money & travel prep
+  'la agencia de viajes', 'el folleto', 'el horario', 'el mapa', 'la tarifa',
+  'cambiar dinero', 'sacar dinero', 'el cajero automatico', 'el cheque',
+  // People & verbs
+  'el viajero', 'el pasajero', 'viajar', 'llegar', 'salir', 'volver', 'regresar',
+  'reservar', 'visitar', 'explorar', 'perderse', 'encontrar',
+  // Verb forms (imperfect / preterite distractors)
+  'viajaba', 'viajé', 'viajó', 'tomaba', 'tomé', 'tomó',
+  'era', 'fue', 'estaba', 'estuvo', 'tenía', 'tuvo',
+  'hacía', 'hizo', 'iba', 'fui', 'sabía', 'supo',
+  'manejaba', 'manejé', 'manejó', 'recibía', 'recibí', 'soñaba', 'soñé',
+  'hubiera sido', 'habría sido', 'volvemos', 'volvimos', 'volvía'
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentStudent = null;
+let currentActs = [];
+let currentPlaywright = null;  // The playwright assigned at sign-in
+let tabViolations = 0;
+let submitted = false;
+
+// ============================================================
+// PLAYWRIGHT ROTATION
+// ============================================================
+function renderPlaywright() {
+  const pw = playwrights[Math.floor(Math.random() * playwrights.length)];
+  currentPlaywright = pw;
+  document.getElementById('playwright-card').innerHTML = `
+    <div class="playwright-name">🎭 ${pw.name}</div>
+    <div class="playwright-era">${pw.era}</div>
+    <div class="playwright-intro">${pw.intro}</div>
+  `;
+}
+
+// ============================================================
+// SIGN IN
+// ============================================================
+function handleSignIn() {
+  const first = document.getElementById('first-name').value.trim();
+  const last = document.getElementById('last-name').value.trim();
+  const period = document.getElementById('period').value;
+  const errEl = document.getElementById('signin-error');
+
+  if (!first || !last || !period) {
+    errEl.textContent = 'Please fill in all fields before continuing.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  errEl.classList.add('hidden');
+
+  // Assign 4 consecutive acts starting from a random act (1–20, wrapping)
+  const startIdx = Math.floor(Math.random() * 20); // 0-based index into allActs
+  currentActs = [];
+  for (let i = 0; i < 4; i++) {
+    currentActs.push(allActs[(startIdx + i) % 20]);
+  }
+  currentStudent = { first, last, period, startActNum: currentActs[0].actNum };
+
+  document.getElementById('signin-screen').style.display = 'none';
+  showActivity();
+}
+
+// ============================================================
+// SHOW ACTIVITY
+// ============================================================
+function showActivity() {
+  const screen = document.getElementById('activity-screen');
+  screen.style.display = 'block';
+
+  document.getElementById('act-student-info').textContent =
+    `${currentStudent.first} ${currentStudent.last} · ${currentStudent.period}`;
+
+  const actNums = currentActs.map(a => `Act ${a.actNum}`).join('  ·  ');
+  document.getElementById('act-number-label').textContent = actNums;
+
+  // Progress pips
+  const pipContainer = document.getElementById('act-progress');
+  pipContainer.innerHTML = currentActs.map((a, i) =>
+    `<div class="progress-pip active" id="pip-${i}" title="Act ${a.actNum}"></div>`
+  ).join('');
+
+  // Populate bonus playwright dropdown: correct + 4 random distractors, shuffled
+  const others = playwrights.filter(p => p.name !== currentPlaywright.name);
+  const distractors = others.sort(() => Math.random() - 0.5).slice(0, 4);
+  const choices = [currentPlaywright, ...distractors].sort(() => Math.random() - 0.5);
+  const sel = document.getElementById('bonus-playwright');
+  choices.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.name;
+    opt.textContent = `${p.name} (${p.era})`;
+    sel.appendChild(opt);
+  });
+
+  renderAllActs();
+}
+
+function renderAllActs() {
+  const container = document.getElementById('act-content');
+  let fullHtml = '';
+
+  currentActs.forEach((act, actIdx) => {
+    // Act divider (not before first)
+    if (actIdx > 0) {
+      fullHtml += `<div class="act-divider"><div class="act-divider-label">✦ ${act.title} ✦</div></div>`;
+    }
+
+    const itemMap = {};
+    act.items.forEach(item => itemMap[item.id] = item);
+
+    fullHtml += `<div class="scene-card" data-act-idx="${actIdx}">
+      <div class="scene-label">¡Qué Viaje! — ${act.title}</div>
+      <div class="scene-setting"><em>${act.setting}</em></div>`;
+
+    act.dialogue.forEach(line => {
+      if (line.type === 'direction') {
+        fullHtml += `<div class="stage-direction">(${line.text})</div>`;
+      } else if (line.type === 'line') {
+        // Build the dialogue line with inline blanks
+        let lineHtml = `<div class="dialogue-line"><span class="speaker">${line.speaker}:</span><span class="dialogue-text">`;
+        const textItemsInLine = [];
+        line.text.forEach(segment => {
+          if (typeof segment === 'string') {
+            lineHtml += segment;
+          } else if (segment.item) {
+            const item = itemMap[segment.item];
+            lineHtml += renderBlank(item, actIdx);
+            if (item.type === 'text') textItemsInLine.push(item);
+          }
+        });
+        lineHtml += `</span></div>`;
+        // Append word bank blocks for all text items in this line, after the line
+        textItemsInLine.forEach(item => {
+          lineHtml += renderWordBankBlock(item);
+        });
+        fullHtml += lineHtml;
+      }
+    });
+
+    fullHtml += `</div>`;
+  });
+
+  container.innerHTML = fullHtml;
+}
+
+// Generate a shuffled word bank of 5: correct answer + 4 random distractors
+function generateWordBank(correctAnswer) {
+  const normalize = s => s.toLowerCase().replace(/[áàä]/g,'a').replace(/[éèë]/g,'e')
+    .replace(/[íìï]/g,'i').replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n').trim();
+  const normCorrect = normalize(correctAnswer);
+
+  // Filter pool to exclude the correct answer and near-duplicates
+  const pool = unit6Pool.filter(w => normalize(w) !== normCorrect);
+
+  // Shuffle pool and pick 4 distractors
+  const shuffled = pool.sort(() => Math.random() - 0.5);
+  const distractors = shuffled.slice(0, 4);
+
+  // Combine and shuffle all 5
+  const all = [correctAnswer, ...distractors].sort(() => Math.random() - 0.5);
+  return all;
+}
+
+function renderBlank(item, actIdx) {
+  const uid = `a${actIdx}i${item.id}`;
+  if (item.type === 'text') {
+    // Only the numbered blank goes inline in the sentence
+    return `<span class="item-num">${item.id}</span><input class="blank-input" id="item-${uid}" type="text" placeholder="___" autocomplete="off" spellcheck="false" />`;
+  } else {
+    let opts = '';
+    item.options.forEach(opt => {
+      opts += `<button class="mc-option" onclick="selectMC('${uid}', '${opt.replace(/'/g,"\\'")}', this)" data-value="${opt.replace(/"/g,'&quot;')}">${opt}</button>`;
+    });
+    return `<span class="item-num">${item.id}</span><span class="mc-group" id="mc-${uid}">${opts}</span>`;
+  }
+}
+
+// Returns the word bank block HTML for a text item (rendered below its dialogue line)
+function renderWordBankBlock(item) {
+  if (item.type !== 'text') return '';
+  const wordBank = generateWordBank(item.answer);
+  const wordSpans = wordBank.map(w => `<span class="wb-word">${w}</span>`).join('');
+  return `<div class="word-bank-block"><span class="word-bank-block-label">📖 Item ${item.id} Bank:</span>${wordSpans}</div>`;
+}
+
+function selectMC(uid, value, btn) {
+  if (submitted) return;
+  const group = document.getElementById(`mc-${uid}`);
+  group.querySelectorAll('.mc-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  btn.dataset.selected = 'true';
+  group.dataset.selected = value;
+}
+
+// ============================================================
+// SUBMIT
+// ============================================================
+function handleSubmit() {
+  if (submitted) return;
+
+  let allAnswered = true;
+
+  currentActs.forEach((act, actIdx) => {
+    act.items.forEach(item => {
+      const uid = `a${actIdx}i${item.id}`;
+      if (item.type === 'text') {
+        const val = document.getElementById(`item-${uid}`)?.value.trim();
+        if (!val) allAnswered = false;
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        if (!group?.dataset.selected) allAnswered = false;
+      }
+    });
+  });
+
+  // Check bonus
+  const bonusPlaywright = document.getElementById('bonus-playwright').value;
+  const bonusResponse = document.getElementById('bonus-response').value.trim();
+  if (!bonusPlaywright || !bonusResponse) allAnswered = false;
+
+  if (!allAnswered) {
+    if (!confirm('You have unanswered items (including Question 21). Are you sure you want to submit? You cannot go back.')) return;
+  } else {
+    if (!confirm('Are you sure you want to submit all 21 questions? This is your ONE and ONLY attempt.')) return;
+  }
+
+  submitted = true;
+  document.getElementById('submit-btn').disabled = true;
+
+  let correct = 0;
+  let total = 0;
+  const allResults = [];
+
+  const normalize = s => s.toLowerCase().replace(/[áàä]/g,'a').replace(/[éèë]/g,'e').replace(/[íìï]/g,'i').replace(/[óòö]/g,'o').replace(/[úùü]/g,'u').replace(/ñ/g,'n').trim();
+
+  currentActs.forEach((act, actIdx) => {
+    const actResults = { actTitle: act.title, items: [] };
+
+    act.items.forEach(item => {
+      const uid = `a${actIdx}i${item.id}`;
+      let studentAnswer = '';
+
+      if (item.type === 'text') {
+        studentAnswer = document.getElementById(`item-${uid}`)?.value.trim() || '(no answer)';
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        studentAnswer = group?.dataset.selected || '(no answer)';
+      }
+
+      const isCorrect = normalize(studentAnswer) === normalize(item.answer);
+      if (isCorrect) correct++;
+      total++;
+
+      actResults.items.push({ item, studentAnswer, isCorrect });
+
+      // Visual feedback
+      if (item.type === 'text') {
+        const el = document.getElementById(`item-${uid}`);
+        if (el) {
+          el.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+          el.disabled = true;
+          if (!isCorrect) el.value = studentAnswer + ' ✗';
+        }
+      } else {
+        const group = document.getElementById(`mc-${uid}`);
+        if (group) {
+          group.querySelectorAll('.mc-option').forEach(btn => {
+            btn.disabled = true;
+            const val = btn.dataset.value || btn.textContent;
+            if (normalize(val) === normalize(item.answer)) {
+              btn.classList.add('reveal-correct');
+            } else if (btn.dataset.selected === 'true' && !isCorrect) {
+              btn.classList.add('wrong-answer');
+            }
+          });
+        }
+      }
+    });
+
+    allResults.push(actResults);
+  });
+
+  // Question 21: playwright selection (1 pt auto-graded)
+  const playwrightCorrect = bonusPlaywright === currentPlaywright.name;
+
+  // Show vocab results immediately, then grade bonus async
+  showResults(allResults, correct, total, playwrightCorrect, bonusPlaywright, bonusResponse);
+}
+
+// ============================================================
+// AI GRADING — QUESTION 21
+// ============================================================
+async function gradeBonus(playwrightCorrect, bonusPlaywright, bonusResponse) {
+  const section = document.getElementById('bonus-result-section');
+  section.classList.remove('hidden');
+  section.innerHTML = `
+    <div class="feedback-item" style="border-left-color:var(--gold);">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:0.85rem; letter-spacing:4px; color:var(--gold); margin-bottom:12px;">
+        Question 21 — Grading...
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; color:var(--warm-gray); font-style:italic; font-size:0.95rem;">
+        <span style="display:inline-block; width:18px; height:18px; border:2px solid var(--gold); border-top-color:transparent; border-radius:50%; animation:spin 0.8s linear infinite;"></span>
+        AI is reading your Spanish response...
+      </div>
+    </div>`;
+
+  const playwrightPts = playwrightCorrect ? 1 : 0;
+
+  const prompt = `You are grading a Spanish 2 student's open-ended question on a vocabulary assessment.
+
+The student was introduced to this playwright at the start of the activity:
+
+PLAYWRIGHT: ${currentPlaywright.name}
+ERA: ${currentPlaywright.era}
+INTRODUCTION TEXT: "${currentPlaywright.intro}"
+
+The student was asked: "In Spanish, write some information you learned about this playwright from the introduction."
+
+The student's playwright selection: "${bonusPlaywright}" (${playwrightCorrect ? 'CORRECT' : 'INCORRECT — correct answer is ' + currentPlaywright.name})
+
+The student's Spanish response:
+"${bonusResponse}"
+
+Grade the SPANISH RESPONSE only (not the playwright selection) on a scale of 0–4 points using this rubric:
+- 4 pts: Response is in Spanish and accurately includes 3 or more distinct facts or details from the introduction (e.g. dates, works, style, significance, quotes, personality). 
+- 3 pts: Response is in Spanish and includes 2 clear facts from the introduction with reasonable accuracy.
+- 2 pts: Response is in Spanish and includes 1 clear fact from the introduction, OR includes 2 facts but with notable inaccuracies.
+- 1 pt: Response attempts Spanish and shows minimal engagement with the introduction (vague, very little detail, or mostly in English).
+- 0 pts: Response is blank, completely off-topic, or shows no evidence of reading the introduction.
+
+Be generous with partial credit for students who are clearly trying but have Spanish grammar errors — grade on CONTENT not grammar.
+
+Respond in this exact JSON format with no other text:
+{
+  "score": <number 0-4>,
+  "feedback": "<2-3 sentences of specific, encouraging feedback in English explaining what they did well and what they could have added. Reference specific details from the introduction.>",
+  "keyFacts": ["<fact they mentioned>", "<another fact if applicable>"],
+  "missedFacts": ["<an important detail from the intro they did not mention>"]
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+
+    const data = await response.json();
+    const raw = data.content.map(b => b.text || '').join('');
+    const clean = raw.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+
+    const responsePts = parsed.score;
+    const totalQ21Pts = playwrightPts + responsePts;
+
+    // Update score display with final total
+    const vocabScore = parseInt(document.getElementById('score-num').textContent) || 0;
+    const grandTotal = vocabScore + totalQ21Pts;
+    document.getElementById('score-total').textContent = `/ 25 pts total`;
+    document.getElementById('score-num').textContent = grandTotal;
+
+    const pwClass = playwrightCorrect ? 'correct' : 'wrong';
+    const pwBadge = playwrightCorrect ? '✓ Correct' : '✗ Incorrect';
+
+    const keyFactsHtml = parsed.keyFacts && parsed.keyFacts.length
+      ? `<div style="margin-top:6px; font-size:0.88rem; color:var(--stage-green);"><strong>✓ Facts you included:</strong> ${parsed.keyFacts.join(' · ')}</div>`
+      : '';
+    const missedHtml = parsed.missedFacts && parsed.missedFacts.length
+      ? `<div style="margin-top:4px; font-size:0.88rem; color:var(--warm-gray);"><strong>💡 Could have mentioned:</strong> ${parsed.missedFacts.join(' · ')}</div>`
+      : '';
+
+    section.innerHTML = `
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:0.85rem; letter-spacing:4px; color:var(--gold); background:linear-gradient(135deg,var(--cream),var(--parchment)); padding:10px 18px; border-radius:3px; border-left:4px solid var(--gold); box-shadow:0 2px 10px #00000033; margin-bottom:12px;">
+        Question 21 — Playwright Reflection — ${totalQ21Pts} / 5 Points
+      </div>
+
+      <div class="feedback-item ${pwClass}" style="margin-bottom:10px;">
+        <div class="feedback-top">
+          <span class="feedback-badge ${pwClass}">${pwBadge}</span>
+          <div class="feedback-q"><strong>Part A — Playwright Identification</strong> — 1 point</div>
+        </div>
+        <div class="feedback-answers">
+          You selected: <span style="color:${playwrightCorrect ? 'var(--correct)' : 'var(--wrong)'}">${bonusPlaywright || '(none)'}</span>
+          ${!playwrightCorrect ? ` &nbsp;|&nbsp; Correct: <span style="color:var(--correct)">${currentPlaywright.name}</span>` : ''}
+        </div>
+        <div class="feedback-why">1 point for correctly identifying your assigned playwright.</div>
+      </div>
+
+      <div class="feedback-item" style="border-left-color:${responsePts >= 3 ? 'var(--correct)' : responsePts >= 1 ? 'var(--gold)' : 'var(--wrong)'};">
+        <div class="feedback-top">
+          <span class="feedback-badge" style="background:${responsePts >= 3 ? 'var(--correct)' : responsePts >= 1 ? 'var(--gold)' : 'var(--wrong)'}; color:white;">${responsePts} / 4 pts</span>
+          <div class="feedback-q"><strong>Part B — Spanish Response</strong> — AI Graded</div>
+        </div>
+        <div class="feedback-answers" style="font-style:italic; color:#3a2a1a; margin-bottom:6px;">"${bonusResponse}"</div>
+        <div class="feedback-why">💡 ${parsed.feedback}</div>
+        ${keyFactsHtml}
+        ${missedHtml}
+      </div>`;
+
+  } catch(err) {
+    section.innerHTML = `
+      <div class="feedback-item" style="border-left-color:var(--gold);">
+        <div class="feedback-top">
+          <span class="feedback-badge" style="background:var(--gold); color:var(--ink);">Pending</span>
+          <div class="feedback-q"><strong>Question 21</strong> — Part A: ${playwrightPts}/1 pt · Part B: your teacher will grade manually</div>
+        </div>
+        <div class="feedback-why">Your response has been recorded. Your teacher will review the Spanish portion.<br><em>Your response: "${bonusResponse}"</em></div>
+      </div>`;
+    document.getElementById('score-total').textContent = `/ 20 vocab pts · Q21 pending`;
+  }
+}
+
+// ============================================================
+// RESULTS
+// ============================================================
+function showResults(allResults, correct, total, playwrightCorrect, bonusPlaywright, bonusResponse) {
+  document.getElementById('activity-screen').style.display = 'none';
+  const rs = document.getElementById('results-screen');
+  rs.style.display = 'block';
+
+  // Vocab score (Q1–20), Q21 graded async
+  document.getElementById('score-num').textContent = correct;
+  document.getElementById('score-total').textContent = `/ ${total} vocab pts · Q21 grading...`;
+
+  const pct = Math.round((correct / total) * 100);
+  let label = '', msg = '';
+  if (pct >= 90) { label = '¡Excelente! 🌟'; msg = 'Outstanding performance on Unit 6 — De Viaje! Scroll down to see your Question 21 results.'; }
+  else if (pct >= 80) { label = '¡Muy bien! 👏'; msg = 'Strong grasp of De Viaje vocabulary. Check your Question 21 results below.'; }
+  else if (pct >= 70) { label = '¡Bien! 🎭'; msg = 'Good effort! Review the items below. Question 21 is grading now.'; }
+  else if (pct >= 60) { label = 'Necesitas practicar 📚'; msg = 'Keep studying! Review the correct answers below. Question 21 is grading now.'; }
+  else { label = 'Sigue practicando 💪'; msg = 'Study the explanations carefully. Question 21 results are loading below.'; }
+
+  document.getElementById('score-label').textContent = label;
+  document.getElementById('score-msg').textContent = msg;
+
+  let fbHtml = '';
+  allResults.forEach(actResult => {
+    fbHtml += `<div style="margin-top:24px; margin-bottom:8px;">
+      <div style="font-family:'Bebas Neue',sans-serif; font-size:0.85rem; letter-spacing:4px; color:var(--gold); background:linear-gradient(135deg,var(--cream),var(--parchment)); padding:10px 18px; border-radius:3px; border-left:4px solid var(--gold); box-shadow:0 2px 10px #00000033;">
+        ${actResult.actTitle}
+      </div>
+    </div>`;
+
+    actResult.items.forEach(r => {
+      const cls = r.isCorrect ? 'correct' : 'wrong';
+      const badge = r.isCorrect ? '✓ Correct' : '✗ Incorrect';
+      fbHtml += `
+        <div class="feedback-item ${cls}">
+          <div class="feedback-top">
+            <span class="feedback-badge ${cls}">${badge}</span>
+            <div class="feedback-q"><strong>Item ${r.item.id}</strong> — ${r.item.type === 'mc' ? 'Multiple Choice' : 'Word Bank'}</div>
+          </div>
+          <div class="feedback-answers">
+            Your answer: <span style="color:${r.isCorrect ? 'var(--correct)' : 'var(--wrong)'}">${r.studentAnswer}</span>
+            ${!r.isCorrect ? ` &nbsp;|&nbsp; Correct answer: <span style="color:var(--correct)">${r.item.answer}</span>` : ''}
+          </div>
+          <div class="feedback-why">💡 ${r.item.explanation}</div>
+        </div>`;
+    });
+  });
+
+  document.getElementById('feedback-list').innerHTML = fbHtml;
+  rs.scrollIntoView({ behavior: 'smooth' });
+
+  // Kick off async AI grading for bonus
+  gradeBonus(playwrightCorrect, bonusPlaywright, bonusResponse);
+}
+
+// ============================================================
+// TAB / WINDOW LOCKING
+// ============================================================
+function triggerTabWarning() {
+  if (submitted) return;
+  tabViolations++;
+
+  if (tabViolations === 1) {
+    const w = document.getElementById('tab-warning');
+    w.classList.add('show');
+    setTimeout(() => w.classList.remove('show'), 6000);
+  } else {
+    document.getElementById('lockout-overlay').classList.add('active');
+    document.getElementById('submit-btn').disabled = true;
+  }
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) triggerTabWarning();
+});
+
+window.addEventListener('blur', () => {
+  if (!submitted) triggerTabWarning();
+});
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && ['t','n','w','Tab'].includes(e.key)) {
+    e.preventDefault();
+  }
+});
+
+// ============================================================
+// INIT
+// ============================================================
+renderPlaywright();
+</script>
+</body>
+</html>sh Assessment</title>
 <!-- Block Google Translate BEFORE any content loads -->
 <script>
 (function() {
